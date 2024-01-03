@@ -4,8 +4,11 @@
   "description": "\"A Second Escape Room built in Electron\"",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
   "author": "WSPARROW",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^28.1.0"
+  }
 }
