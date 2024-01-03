@@ -1,7 +1,7 @@
 {
   "name": "escape-room-2",
   "version": "0.0.1",
-  "description": "\"A Second Escape Room built in Electron\"",
+  "description": "A Second Escape Room built in Electron",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
