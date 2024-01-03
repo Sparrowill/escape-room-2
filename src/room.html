@@ -6,15 +6,27 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Escape Room 2</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-
-    <!-- You can also require other files to run in this process -->
+    <div class="inventory-bg">
+      <div class="inventory-column">
+        <img class="inventory-item" src="./images/inventory/inventory.png">
+      </div>
+      <div class="inventory-column">
+        <img class="inventory-item" src="./images/inventory/inventory.png">
+      </div>
+    </div>
+    <div class="room-view-bg">
+    </div>
+    <div class="dialogue-bg">
+     <p class="dialogue-text">Test message which we should make sure wraps.</p>
+      <div class="dialogue-btn-container">
+        <button class="interact-btn">Test 1</button>
+        <button class="interact-btn">Test 2</button>
+      </div>
+    </div>
     <script src="./renderer.js"></script>
   </body>
 </html>
