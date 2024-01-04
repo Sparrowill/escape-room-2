@@ -11,6 +11,7 @@ const createWindow = () => {
     height: 600,
     //fullscreen: true,
     webPreferences: {
+      sandbox: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
@@ -20,7 +21,7 @@ const createWindow = () => {
   mainWindow.loadFile('src/room.html')
 
   // Open the DevTools.
-   mainWindow.webContents.openDevTools()
+   //mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
