@@ -50,12 +50,11 @@ body{
     transform: translate(-50%, 0);
     max-width: 25%;
     border-radius: 10px;
-    background-color: black;
-    opacity: 0.8;
+    background-color: rgba(0,0,0,0.8);
+
     display: none;
     z-index:2;
 }
-
 
 .dialogue-text{
     color: white;
@@ -64,14 +63,18 @@ body{
 .dialogue-btn-container{
     display:flex;
     justify-content: center;
+ 
 }
 .interact-btn{
     text-align: center;
-    color: gray;
+    background-color: rgb(66, 66, 66);
+    color: white;
     border: 10px, solid, black;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
+    opacity: 1;
+    z-index: 3;
 }
 .interact-btn:hover{
     background-color: rgb(148, 147, 147);
