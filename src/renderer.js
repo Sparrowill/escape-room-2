@@ -1,23 +1,58 @@
-// class Room {
-//     constructor(name, background){
-//         this.name = name;
-//         this.background = background;
-//         this.active = false;
-//     }
-//     activate() {
-//         this.active = true;
-//     }
-//     deactivate() {
-//         this.active = false;
-//     }
+class Scene {
+    constructor(name, background){
+        this.name = name;
+        this.background = background;
+        this.active = false;
+        this.nav_btns = [];
+    }
+    activate() {
+        this.active = true;
+        //Set background
+        document.getElementById("room-view").src=this.background
+        this.create_nav_btns()
+    }
+
+    deactivate() {
+        this.active = false;
+    }
+
+    get_name() {
+        return this.name;
+    }
+
+    add_nav_btn(id,x,y){
+        var btn = document.createElement("button");
+        btn.id = id;
+        btn.classList.add("nav-btn");
+        btn.style.left = x;
+        btn.style.top = y;
+        this.nav_btns.push(btn)
+    }
+    create_nav_btns(){
+        var room = document.getElementById("room-view-bg");
+        this.nav_btns.forEach( (btn) => {
+            room.appendChild(btn);
+        });
+    }
+
+    
+}
+// Class activate sets the background, then draws the movement dots, and all the interaction buttons
+
+//Move function outside the class system takes in the name of the scene to move to. Searches through a global list of the class instances to find that one
+// Then deactivates all classes, and activates that one only.
+
+// Global array of all scenes for easy access.
+var scenes = [];
 
 
-// }
+
 // Event Listener for buttons
 // TODO get element by class, extract id, then do stuff based on that, rather than many listeners
 document.getElementById("test").addEventListener("click", function (){
    // showText("Text ");
-   showInteract("Interaction Test With longe rtext","Agree byt longer");
+   //showInteract("Interaction Test With longe rtext","Agree byt longer");
+   move("stables-interior");
 });
 
 //Event listener for cancel interaction button
@@ -31,6 +66,16 @@ document.getElementById("agree").addEventListener("click", function (){
     console.log("Agreed");
     document.getElementById("dialogue-bg").style.display = "none"
 });
+
+//Create Scene class instance
+stables_entrance = new Scene("stables-entrance","./images/backgrounds/stables/entrance.png");
+stables_entrance.add_nav_btn("nav1",30,30);
+scenes.push(stables_entrance);
+stables_entrance.activate();
+
+stables_interior = new Scene("stables-interior","./images/backgrounds/stables/interior.png");
+stables_interior.add_nav_btn("nav1",30,30);
+scenes.push(stables_interior);
 
 // Function to display text in the dialogue box
 function showText(text){
@@ -56,4 +101,16 @@ function showInteract(question, text){
     document.getElementById("agree").innerHTML = text;
     // dialogue box appears
     container.style.display = "block";
+}
+
+//Function to move from one scene to another
+function move(destination){
+    scenes.forEach( (scene) => {
+        console.log(scene)
+        scene.deactivate();
+        console.log(scene.get_name())
+        if(scene.get_name() == destination){
+            scene.activate();
+        }
+    });
 }

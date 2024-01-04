@@ -80,3 +80,18 @@ body{
     background-color: rgb(148, 147, 147);
     cursor: pointer;
 }
+
+.nav-btn{
+    position: absolute;
+    background: transparent;
+    background-image:  url("./images/interactions/move.png");
+    background-size: contain;
+    height: 40px;
+    width: 40px;
+    border: none;
+    top: 50%;
+    left: 50%;
+}
+.nav-btn:hover{
+    cursor:pointer;
+}
