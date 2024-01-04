@@ -10,14 +10,12 @@ document.getElementById("test").addEventListener("click", function (){
 
 //Event listener for cancel interaction button
 document.getElementById("cancel").addEventListener("click", function (){
-    console.log("Cancelled");
     window.cancel = true;
     document.getElementById("dialogue-bg").style.display = "none"
 });
 
 //Event listener for agree interaction button
 document.getElementById("agree").addEventListener("click", function (){
-    console.log("Agreed");
     window.agree = true;
     document.getElementById("dialogue-bg").style.display = "none"
 });
