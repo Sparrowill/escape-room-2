@@ -61,7 +61,7 @@ var scenes = [];
 document.getElementById("test").addEventListener("click", function (){
    // showText("Text ");
    // showInteract("Interaction Test With longer text","Agree but longer");
-   move("stables-interior");
+   //move("stables-interior");
 });
 
 //Event listener for cancel interaction button
@@ -76,16 +76,30 @@ document.getElementById("agree").addEventListener("click", function (){
     document.getElementById("dialogue-bg").style.display = "none"
 });
 
-//Create Scene class instance
+//Create Scene class instances
+/************************
+        Stables
+***********************/
 stables_entrance = new Scene("stables-entrance","./images/backgrounds/stables/entrance.png");
-stables_entrance.add_nav_btn("nav1","30","30","stables-interior");
-//stables_entrance.add_nav_btn("nav2","20","20","AnotherDestination");
+stables_entrance.add_nav_btn("nav1","75","20","stables-interior");
+stables_entrance.add_nav_btn("nav2","50","20","stables-mirza");
 scenes.push(stables_entrance);
-stables_entrance.activate();
 
 stables_interior = new Scene("stables-interior","./images/backgrounds/stables/interior.png");
-stables_interior.add_nav_btn("nav2","20","30","stables-entrance");
+stables_interior.add_nav_btn("nav1","30","30","stables-entrance");
+stables_interior.add_nav_btn("nav1","70","40","stables-mirza");
 scenes.push(stables_interior);
+
+stables_mirza = new Scene("stables-mirza","./images/backgrounds/stables/mirza.png");
+stables_mirza.add_nav_btn("nav2","5","90","stables-entrance");
+stables_mirza.add_nav_btn("nav2","95","90","stables-interior");
+scenes.push(stables_mirza);
+
+
+
+// First scene is stable entrance
+stables_entrance.activate();
+
 
 // Function to display text in the dialogue box
 function showText(text){
@@ -119,6 +133,7 @@ function move(destination){
         scene.deactivate();
    
     });
+    // Has t be separate loops as otherwise we risk deactivating a scene we just activated.
     scenes.forEach( (scene) => {
         if(scene.get_name() == destination){
             scene.activate();
