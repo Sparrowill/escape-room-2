@@ -3,10 +3,12 @@ import {Scene} from "./scene.js"
 // Global array to store all scenes for looping through.
 var scenes = [];
 
+//Global vars for agree or cancel
+window.agree = false;
+window.cancel = false;
+
 export function create_rooms(){
     create_stables();
-
-
 
 }
 
@@ -45,8 +47,8 @@ function move(destination){
 
 
 // Function to display text in the dialogue box
-function showText(text){
-    container = document.getElementById("dialogue-bg");
+function show_text(text){
+    var container = document.getElementById("dialogue-bg");
     // Set text value (auto expands and wraps)
     document.getElementById("dialogue-text").innerHTML = text;
     // dialogue box appears
@@ -60,13 +62,25 @@ function showText(text){
 }
 
 //Function to display an interactive text dialogue box
-function showInteract(question, text){
-    container = document.getElementById("dialogue-bg");
+export function show_interact(question, text, agreeFunc){
+    var container = document.getElementById("dialogue-bg");
     // Set text value (auto expands and wraps)
     document.getElementById("dialogue-text").innerHTML = question;
     // Set button value
     document.getElementById("agree").innerHTML = text;
     // dialogue box appears
     container.style.display = "block";
+    var interval = setInterval(function () {
+        // If a button has been pressed
+        if(window.agree || window.cancel){
+            window.cancel = false;
+            clearInterval(interval);
+            // If the button pressed was agree
+            if(window.agree){
+                window.agree = false;
+                agreeFunc();
+            }
+        }
+    },10);
 }
 
