@@ -13,8 +13,8 @@ body{
 }
 
 .inventory-bg {
-    background-image: url("./images/inventory/inventory-bg.jpg");
-    background-size: 100vw;
+    background-image: url("./images/inventory/inventory-bg.png");
+    background-size: cover;
     height: 10%;
     z-index:2;
 }
@@ -73,6 +73,6 @@ body{
     margin: 5px;
 }
 .interact-btn:hover{
-    background-color: rgb(94, 94, 94);
+    background-color: rgb(148, 147, 147);
     cursor: pointer;
 }
