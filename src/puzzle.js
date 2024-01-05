@@ -29,6 +29,7 @@ export class Puzzle {
     is_active() {
         return this.active;
     }
+}
     // Set explanation takes a long string of text which explains the puzzle
     // Show explanation txt displays this on top of the puzzle, alongside an OK button
     // Explanation is reachable from top left at all times.
@@ -36,3 +37,4 @@ export class Puzzle {
     // This could then also house the hint section. 
     // Set hints takes an array and creates a dropdown based on how many are given
 
+// Swap inventory out to dark wood texture. OR translucent colour. Look at original for ideas.
