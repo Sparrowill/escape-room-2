@@ -5,6 +5,7 @@ export class Scene {
         this.active = false;
         this.nav_btns = [];
         this.feedback_btns = [];
+        this.interact_btns = [];
     }
     activate() {
         this.active = true;
@@ -21,7 +22,6 @@ export class Scene {
         img.id = "room-view";
         img.classList.add("room-view")
         room.appendChild(img)
-
         this.active = false;
     }
 
@@ -48,11 +48,14 @@ export class Scene {
         this.feedback_btns.forEach( (btn) => {
             room.appendChild(btn);
         });
+        this.interact_btns.forEach( (btn) => {
+            room.appendChild(btn);
+        });
     }
     add_feedback_btn(id,x,y,rotation,height, width,show_text,text){
         const btn = document.createElement("button");
         btn.id = id;
-        btn.classList.add("feedback-btn");
+        btn.classList.add("hidden-btn");
         btn.style.left = x + "%";
         btn.style.top = y + "%";
         btn.style.rotate = rotation + "deg";
@@ -64,7 +67,20 @@ export class Scene {
          });
     }
 
-    add_
+    add_interact_btn(id,x,y,rotation,height, width,show_interact,question, text, agreeFunc){
+        const btn = document.createElement("button");
+        btn.id = id;
+        btn.classList.add("hidden-btn");
+        btn.style.left = x + "%";
+        btn.style.top = y + "%";
+        btn.style.rotate = rotation + "deg";
+        btn.style.width = width + "%";
+        btn.style.height = height + "%";
+        this.interact_btns.push(btn);
+        btn.addEventListener("click", () => {
+            show_interact(question, text, agreeFunc);
+        })
+    }
  
 }
 
