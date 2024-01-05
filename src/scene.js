@@ -29,6 +29,10 @@ export class Scene {
         return this.name;
     }
 
+    is_active() {
+        return this.active;
+    }
+
     add_nav_btn(id,x,y,move,destination){
         const btn = document.createElement("button");
         btn.id = id;
@@ -51,6 +55,28 @@ export class Scene {
         this.interact_btns.forEach( (btn) => {
             room.appendChild(btn);
         });
+    }
+    disable_all_btns(){
+        this.nav_btns.forEach( (btn) => {
+           btn.disabled=true;
+        });
+        this.feedback_btns.forEach( (btn) => {
+           btn.disabled=true;
+        });
+        this.interact_btns.forEach( (btn) => {
+           btn.disabled=true;
+        });
+    }
+    enable_all_btns(){
+        this.nav_btns.forEach( (btn) => {
+            btn.disabled=false;
+         });
+         this.feedback_btns.forEach( (btn) => {
+            btn.disabled=false;
+         });
+         this.interact_btns.forEach( (btn) => {
+            btn.disabled=false;
+         });
     }
     add_feedback_btn(id,x,y,rotation,height, width,show_text,text){
         const btn = document.createElement("button");
@@ -78,9 +104,8 @@ export class Scene {
         btn.style.height = height + "%";
         this.interact_btns.push(btn);
         btn.addEventListener("click", () => {
-            show_interact(question, text, agreeFunc);
-        })
+            show_interact(question, text, agreeFunc)
+        });
     }
- 
 }
 
