@@ -14,18 +14,19 @@ export function create_rooms(){
 
 function create_stables(){
     var stables_entrance = new Scene("stables-entrance","./images/backgrounds/stables/entrance.png");
-    stables_entrance.add_nav_btn("nav1","75","20",move,"stables-interior");
-    stables_entrance.add_nav_btn("nav2","50","20",move,"stables-mirza");
+    stables_entrance.add_nav_btn("to-interiror","75","20",move,"stables-interior");
+    stables_entrance.add_nav_btn("to-mirza","50","20",move,"stables-mirza");
+    stables_entrance.add_interaction_btn("sleigh","40","60","40","20", "10",show_text,"You have clicked the sleigh");
     scenes.push(stables_entrance);
     
     var stables_interior = new Scene("stables-interior","./images/backgrounds/stables/interior.png");
-    stables_interior.add_nav_btn("nav1","30","30",move,"stables-entrance");
-    stables_interior.add_nav_btn("nav2","70","40",move,"stables-mirza");
+    stables_interior.add_nav_btn("to-entrance","30","30",move,"stables-entrance");
+    stables_interior.add_nav_btn("to-mirza","70","40",move,"stables-mirza");
     scenes.push(stables_interior);
     
     var stables_mirza = new Scene("stables-mirza","./images/backgrounds/stables/mirza.png");
-    stables_mirza.add_nav_btn("nav1","5","90",move,"stables-entrance");
-    stables_mirza.add_nav_btn("nav2","95","90",move,"stables-interior");
+    stables_mirza.add_nav_btn("to-entrance","5","90",move,"stables-entrance");
+    stables_mirza.add_nav_btn("to-interior","95","90",move,"stables-interior");
     scenes.push(stables_mirza);
 
     stables_entrance.activate();
@@ -53,7 +54,7 @@ function show_text(text){
     document.getElementById("dialogue-text").innerHTML = text;
     // dialogue box appears
     container.style.display = "block";
-    display_duration = 1500 + ( text.length * 30 );
+    var display_duration = 1500 + ( text.length * 30 );
     // Display the text for a time period, depending on the length of the text
     setTimeout(function (){
         container.style.display = "none";
@@ -63,6 +64,7 @@ function show_text(text){
 
 //Function to display an interactive text dialogue box
 export function show_interact(question, text, agreeFunc){
+    document.getElementById("dialogue-btn-container").style.display = "flex"
     var container = document.getElementById("dialogue-bg");
     // Set text value (auto expands and wraps)
     document.getElementById("dialogue-text").innerHTML = question;

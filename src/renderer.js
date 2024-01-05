@@ -11,13 +11,16 @@ document.getElementById("test").addEventListener("click", function (){
 //Event listener for cancel interaction button
 document.getElementById("cancel").addEventListener("click", function (){
     window.cancel = true;
-    document.getElementById("dialogue-bg").style.display = "none"
+    document.getElementById("dialogue-bg").style.display = "none";
+    document.getElementById("dialogue-btn-container").style.display = "none";
+
 });
 
 //Event listener for agree interaction button
 document.getElementById("agree").addEventListener("click", function (){
     window.agree = true;
-    document.getElementById("dialogue-bg").style.display = "none"
+    document.getElementById("dialogue-bg").style.display = "none";
+    document.getElementById("dialogue-btn-container").style.display = "none";
 });
 
 // Start the room
