@@ -16,7 +16,7 @@ function create_stables(){
     var stables_entrance = new Scene("stables-entrance","./images/backgrounds/stables/entrance.png");
     stables_entrance.add_nav_btn("to-interiror","75","20",move,"stables-interior");
     stables_entrance.add_nav_btn("to-mirza","50","20",move,"stables-mirza");
-    stables_entrance.add_interaction_btn("sleigh","40","60","40","20", "10",show_text,"You have clicked the sleigh");
+    stables_entrance.add_feedback_btn("sleigh","40","60","40","20", "10",show_text,"You have clicked the sleigh");
     scenes.push(stables_entrance);
     
     var stables_interior = new Scene("stables-interior","./images/backgrounds/stables/interior.png");

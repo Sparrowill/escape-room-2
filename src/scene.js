@@ -4,7 +4,7 @@ export class Scene {
         this.background = background;
         this.active = false;
         this.nav_btns = [];
-        this.interaction_btns = [];
+        this.feedback_btns = [];
     }
     activate() {
         this.active = true;
@@ -45,24 +45,26 @@ export class Scene {
         this.nav_btns.forEach( (btn) => {
             room.appendChild(btn);
         });
-        this.interaction_btns.forEach( (btn) => {
+        this.feedback_btns.forEach( (btn) => {
             room.appendChild(btn);
         });
     }
-    add_interaction_btn(id,x,y,rotation,height, width,show_text,text){
+    add_feedback_btn(id,x,y,rotation,height, width,show_text,text){
         const btn = document.createElement("button");
         btn.id = id;
-        btn.classList.add("hidden-interaction");
+        btn.classList.add("feedback-btn");
         btn.style.left = x + "%";
         btn.style.top = y + "%";
         btn.style.rotate = rotation + "deg";
         btn.style.width = width + "%";
         btn.style.height = height + "%";
-        this.interaction_btns.push(btn);
+        this.feedback_btns.push(btn);
         btn.addEventListener("click", () => {
             show_text(text);
          });
     }
+
+    add_
  
 }
 

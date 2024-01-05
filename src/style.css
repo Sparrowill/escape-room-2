@@ -97,7 +97,7 @@ body{
     cursor:pointer;
 }
 
-.hidden-interaction{
+.feedback-btn{
     position: absolute;
     background: transparent;
     height:5%;
