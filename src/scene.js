@@ -56,27 +56,17 @@ export class Scene {
             room.appendChild(btn);
         });
     }
-    disable_all_btns(){
+
+    toggle_all_btns(disable){
         this.nav_btns.forEach( (btn) => {
-           btn.disabled=true;
+           btn.disabled=disable;
         });
         this.feedback_btns.forEach( (btn) => {
-           btn.disabled=true;
+           btn.disabled=disable;
         });
         this.interact_btns.forEach( (btn) => {
-           btn.disabled=true;
+           btn.disabled=disable;
         });
-    }
-    enable_all_btns(){
-        this.nav_btns.forEach( (btn) => {
-            btn.disabled=false;
-         });
-         this.feedback_btns.forEach( (btn) => {
-            btn.disabled=false;
-         });
-         this.interact_btns.forEach( (btn) => {
-            btn.disabled=false;
-         });
     }
 
     create_btn(id,x,y,rotation,height, width){
@@ -90,6 +80,7 @@ export class Scene {
         btn.style.height = height + "%";
         return btn
     }
+
     add_feedback_btn(id,x,y,rotation,height, width,show_text,text){
         const btn = this.create_btn(id,x,y,rotation,height, width);
         this.feedback_btns.push(btn);

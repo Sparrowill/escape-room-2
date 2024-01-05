@@ -96,7 +96,7 @@ export function show_interact(question, text, agreeFunc){
 function disable_btns(){
     scenes.forEach( (scene) => {
         if(scene.is_active()){
-            scene.disable_all_btns();
+            scene.toggle_all_btns(true);
         }
     });
 }
@@ -105,7 +105,7 @@ function disable_btns(){
 function enable_btns(){
     scenes.forEach( (scene) => {
         if(scene.is_active()){
-            scene.enable_all_btns();
+            scene.toggle_all_btns(false);
         }
     });
 }
