@@ -78,7 +78,8 @@ export class Scene {
             btn.disabled=false;
          });
     }
-    add_feedback_btn(id,x,y,rotation,height, width,show_text,text){
+
+    create_btn(id,x,y,rotation,height, width){
         const btn = document.createElement("button");
         btn.id = id;
         btn.classList.add("hidden-btn");
@@ -87,6 +88,10 @@ export class Scene {
         btn.style.rotate = rotation + "deg";
         btn.style.width = width + "%";
         btn.style.height = height + "%";
+        return btn
+    }
+    add_feedback_btn(id,x,y,rotation,height, width,show_text,text){
+        const btn = this.create_btn(id,x,y,rotation,height, width);
         this.feedback_btns.push(btn);
         btn.addEventListener("click", () => {
             show_text(text);
@@ -94,14 +99,7 @@ export class Scene {
     }
 
     add_interact_btn(id,x,y,rotation,height, width,show_interact,question, text, agreeFunc){
-        const btn = document.createElement("button");
-        btn.id = id;
-        btn.classList.add("hidden-btn");
-        btn.style.left = x + "%";
-        btn.style.top = y + "%";
-        btn.style.rotate = rotation + "deg";
-        btn.style.width = width + "%";
-        btn.style.height = height + "%";
+        const btn = this.create_btn(id,x,y,rotation,height, width);
         this.interact_btns.push(btn);
         btn.addEventListener("click", () => {
             show_interact(question, text, agreeFunc)
