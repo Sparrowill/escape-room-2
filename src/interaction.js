@@ -19,7 +19,6 @@ function create_stables(){
     stables_entrance.add_feedback_btn("sleigh","40","60","40","20", "10",show_text,"You have clicked the sleigh");
     stables_entrance.add_feedback_btn("cart","60","40","40","20", "10",show_text,"You have clicked the cart");
     stables_entrance.add_interact_btn("hassan","15","10","0","2","4",show_interact,"Shall we print 'Hassan' to console?", "Print",function(){console.log("Hassan");})
-
     scenes.push(stables_entrance);
     
     var stables_interior = new Scene("stables-interior","./images/backgrounds/stables/interior.png");
@@ -30,6 +29,7 @@ function create_stables(){
     var stables_mirza = new Scene("stables-mirza","./images/backgrounds/stables/mirza.png");
     stables_mirza.add_nav_btn("to-entrance","5","90",move,"stables-entrance");
     stables_mirza.add_nav_btn("to-interior","95","90",move,"stables-interior");
+    stables_mirza.add_interact_btn("board","45","60","10","20","20",show_interact,"There's something behind this board. ", "Look",function(){console.log("Move to puzzle scene");})
     scenes.push(stables_mirza);
 
     stables_entrance.activate();
