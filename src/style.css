@@ -124,7 +124,7 @@ body{
     left: 50%;
     border: 2px solid black ;
 }
-.explanation-bg{
+.long-text-bg{
     position: absolute;
     padding: 0% 1% 0% 1%;
     top:20%;
@@ -135,11 +135,11 @@ body{
     background-color: rgba(0,0,0,0.8);
     z-index:3;
 }
-.explanation-text {
+.long-text-text {
     color: white;
     text-align: center;
 }
-.explanation-exit {
+.long-text-exit {
     cursor:pointer;
     color:white;
     background-color: transparent;

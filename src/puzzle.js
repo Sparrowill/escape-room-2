@@ -6,9 +6,12 @@ export class Puzzle {
         this.background = background;
         this.active = false;
         this.explanation = "";
+        this.success_text = "";
+        this.success_func;
         this.hints = "";
         this.children = [];
-        this.explanation_on = false;
+        this.current_text = "";
+        this.long_text_on = false;
         this.answer;
         this.solved = false;
     }
@@ -34,7 +37,7 @@ export class Puzzle {
         //Set up explanation button
         const explanation_btn = this.create_element("explanation-btn","btn");
         explanation_btn.addEventListener("click", () => {
-            this.show_explanation();
+            this.show_long_text(this.explanation);
          });
          puzzle.appendChild(explanation_btn);
         //Set up hint button
@@ -66,7 +69,7 @@ export class Puzzle {
         text_box.appendChild(answer_btn);
         puzzle.appendChild(text_box);
         // Show explanation initially
-        this.show_explanation();
+        this.show_long_text(this.explanation);
     }
 
     deactivate() {
@@ -79,7 +82,7 @@ export class Puzzle {
         });
         puzzle.style.display="none";
         if(this.explanation_on){
-            this.hide_explanation(); //In case it's still visible
+            this.hide_long_text(); //In case it's still visible
         }
         this.active = false;
     }
@@ -91,41 +94,53 @@ export class Puzzle {
     is_active() {
         return this.active;
     }
-    set_explanation(explanation){
-        this.explanation = explanation;
+
+    set_explanation(text){
+        this.explanation = text;
     }
-    //TODO Modify to accept the 'you got it correct' message as well.
-    show_explanation(){
-        if(this.explanation_on == false){
+
+    set_success_text(text, success_func){
+        this.success_text = text;
+        this.success_func = success_func;
+    }
+
+    show_long_text(input_text){
+        // If it's new text to show, turn off the old one
+        if(this.long_text_on && this.current_text != input_text){
+            this.hide_long_text();
+        }
+        // If there isn't a long text on already
+        if(this.long_text_on == false){
+            this.current_text = input_text;
             // Create bckground
             var text_box = document.createElement("div");
-            text_box.id = "explanation-bg"
-            text_box.classList.add("explanation-bg");
-            // Create explnation
+            text_box.id = "long-text-bg"
+            text_box.classList.add("long-text-bg");
+            // Create long text
             var text = document.createElement("p");
-            text.id = "explanation-text";
-            text.classList.add("explanation-text");
-            text.innerHTML=this.explanation;
+            text.id = "long-text-text";
+            text.classList.add("long-text-text");
+            text.innerHTML=input_text;
             //Create exit button
             var exit = document.createElement("btn");
-            exit.id = "explanation-exit";
-            exit.classList.add("explanation-exit");
+            exit.id = "long-text-exit";
+            exit.classList.add("long-text-exit");
             exit.textContent = "X";
             exit.addEventListener("click", () => {
-                this.hide_explanation()
+                this.hide_long_text()
             });
             // Add all to doc
             text_box.appendChild(text);
             text_box.appendChild(exit);
             document.getElementById("puzzle-view-bg").appendChild(text_box);
-            this.explanation_on = true;
+            this.long_text_on = true;
         }
     }
-    hide_explanation(){
-        var explanation = document.getElementById("explanation-bg");
-        explanation.replaceChildren();
-        explanation.remove();
-        this.explanation_on = false;
+    hide_long_text(){
+        var long_text = document.getElementById("long-text-bg");
+        long_text.replaceChildren();
+        long_text.remove();
+        this.long_text_on = false;
 
     }
     set_hints(hints){
@@ -139,11 +154,11 @@ export class Puzzle {
     }
     check_answer(check_answer){
         if (this.answer == check_answer){
-            this.solved = true;
-
+            this.solved =  true;
+            this.show_long_text(this.success_text);
+            this.success_func();
             return true;
         } else{
-            this.solved = false;
             show_text("That's not correct");
             return false;
         }
@@ -156,4 +171,3 @@ export class Puzzle {
     // This could then also house the hint section. 
     // Set hints takes an array and creates a dropdown based on how many are given
 
-// Swap inventory out to dark wood texture. OR translucent colour. Look at original for ideas.

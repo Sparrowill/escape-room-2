@@ -30,7 +30,13 @@ function create_stables(){
     var stables_mirza = new Scene("stables-mirza","./images/backgrounds/stables/mirza.png");
     stables_mirza.add_nav_btn("to-entrance","5","90",move,"stables-entrance");
     stables_mirza.add_nav_btn("to-interior","95","90",move,"stables-interior");
-    stables_mirza.add_interact_btn("board","45","60","10","20","20",show_interact,"There's something behind this board. ", "Look",function(){stables_plumbing.activate();})
+    stables_mirza.add_interact_btn("board","45","60","10","20","20",show_interact,"There's something behind this board. ", "Look",function(){
+        if(stables_plumbing.is_solved()){
+            show_text("There's nothing more behind here to look at.");
+        } else {
+            stables_plumbing.activate();
+        }
+    })
     scenes.push(stables_mirza);
 
     stables_entrance.activate();
@@ -102,7 +108,7 @@ function disable_btns(){
     });
 }
 
-//Function to enble clicking on other buttons in the scene 
+//Function to enable clicking on other buttons in the scene 
 function enable_btns(){
     scenes.forEach( (scene) => {
         if(scene.is_active()){
