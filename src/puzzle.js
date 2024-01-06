@@ -229,6 +229,3 @@ export class Puzzle {
     }
 }
 
-    // This could then also house the hint section. 
-    // Set hints takes an array and creates a dropdown based on how many are given
-
