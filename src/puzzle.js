@@ -1,3 +1,5 @@
+import { show_text } from "./interaction.js";
+
 export class Puzzle {
     constructor(name, background){
         this.name = name;
@@ -92,6 +94,7 @@ export class Puzzle {
     set_explanation(explanation){
         this.explanation = explanation;
     }
+    //TODO Modify to accept the 'you got it correct' message as well.
     show_explanation(){
         if(this.explanation_on == false){
             // Create bckground
@@ -128,7 +131,6 @@ export class Puzzle {
     set_hints(hints){
         this.hints=hints;
     }
-
     show_hints(){
         console.log("Hints are shown now");
     }
@@ -138,9 +140,11 @@ export class Puzzle {
     check_answer(check_answer){
         if (this.answer == check_answer){
             this.solved = true;
+
             return true;
         } else{
             this.solved = false;
+            show_text("That's not correct");
             return false;
         }
     }
