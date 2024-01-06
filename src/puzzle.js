@@ -159,7 +159,7 @@ export class Puzzle {
             // Create Title
             const hint_title = document.createElement("p");
             hint_title.classList.add("hint-title");
-            hint_title.innerHTML = "<b>Hints</b> <br> This section will allow you to get hints on a puzzle, if you're stuck. Later hints reveal more about the puzzle.<br><b>The last hint is always the answer to the puzzle</b>";
+            hint_title.innerHTML = "<b>Hints</b> <br> This section will allow you to get hints on a puzzle, if you're stuck. Later hints reveal more about the puzzle.<br><b>The last hint is always the answer to the puzzle.</b>";
             // Create dropdown
             var select = document.createElement("select");
             select.classList.add("hint-dropdown");
