@@ -25,11 +25,11 @@ export function create_inventory_item(id,image){
     //Create holder div
     const div = document.createElement("div");
     div.classList.add("inventory-column");
+    div.id = id;
     //Create image
     const img = document.createElement("img");
     img.classList.add("inventory-item");
     img.src = image;
-    img.id = id;
     // Add mouse over event to make it larger
     div.addEventListener("mouseover",function (){
         img.style.marginTop = "100%";
