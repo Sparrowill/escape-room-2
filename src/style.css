@@ -206,3 +206,42 @@ body{
     margin-left: 5%;
     background-color: white;
 }
+.hint-bg{
+    position: absolute;
+    padding: 0% 1% 0% 1%;
+    top:30%;
+    left:1%;
+    width: 20%;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.8);
+    z-index:3;
+}
+.hint-dropdown{
+    color:black;
+}
+.hint-text{
+    color: white;
+    text-align: center;
+}
+.hide-hint {
+    cursor:pointer;
+    color:white;
+    background-color: transparent;
+    padding: 1px;
+    border: 2px solid white;
+    position: absolute;
+    top:0%;
+    right:0%;
+}
+.hint-title{
+    color: white;
+    text-align:center;
+}
+.show-hint{
+    cursor:pointer;
+    border-radius:1px;
+    display: inline;
+    padding: 3px;
+    margin-left: 5%;
+    background-color: white;
+}

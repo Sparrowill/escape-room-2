@@ -9,6 +9,7 @@ export class Puzzle {
         this.success_text = "";
         this.success_func;
         this.hints = "";
+        this.hint_on = false;
         this.children = [];
         this.current_text = "";
         this.long_text_on = false;
@@ -84,6 +85,9 @@ export class Puzzle {
         if(this.explanation_on){
             this.hide_long_text(); //In case it's still visible
         }
+        if(this.hint_on){
+            this.hide_hints();
+        }
         this.active = false;
     }
 
@@ -147,7 +151,64 @@ export class Puzzle {
         this.hints=hints;
     }
     show_hints(){
-        console.log("Hints are shown now");
+        if(!this.hint_on){
+            // Create div
+            const hint_bg = document.createElement("div");
+            hint_bg.id = "hint-bg";
+            hint_bg.classList.add("hint-bg");
+            // Create Title
+            const hint_title = document.createElement("p");
+            hint_title.classList.add("hint-title");
+            hint_title.innerHTML = "<b>Hints</b> <br> This section will allow you to get hints on a puzzle, if you're stuck. Later hints reveal more about the puzzle.<br><b>The last hint is always the answer to the puzzle</b>";
+            // Create dropdown
+            var select = document.createElement("select");
+            select.classList.add("hint-dropdown");
+            for (var i = 1; i<this.hints.length + 1; i++){
+                var option = document.createElement("option");
+                option.setAttribute("value", i);
+                option.textContent = "Hint " + i;
+                select.appendChild(option);
+            }
+            
+            // Create hint area
+            const hint_text = document.createElement("p");
+            hint_text.id = "hint-text";
+            hint_text.classList.add("hint-text");
+            //Create Show Button
+            const show_hint = document.createElement("btn");
+            show_hint.id = "show-hint";
+            show_hint.classList.add("show-hint");
+            show_hint.innerText = "Show Hint";
+            show_hint.addEventListener("click", () => {
+                var index = select.value;
+                hint_text.innerText = this.hints[index-1];
+            })
+            //Create hide button
+            const hide_hint = document.createElement("btn");
+            hide_hint.id = "hide-hint";
+            hide_hint.classList.add("hide-hint");
+            hide_hint.textContent = "X";
+            hide_hint.addEventListener("click", () => {
+                this.hide_hints()
+            });
+            //update hint area based on dropdown
+
+            //Add it all to the page
+            hint_bg.appendChild(hint_title);
+            hint_bg.appendChild(select);
+            hint_bg.appendChild(show_hint);
+            hint_bg.appendChild(hint_text);
+            hint_bg.appendChild(hide_hint);
+            document.getElementById("puzzle-view-bg").appendChild(hint_bg);
+            this.hint_on = true;
+        }
+    }
+
+    hide_hints(){
+        var hint_bg = document.getElementById("hint-bg");
+        hint_bg.replaceChildren();
+        hint_bg.remove();
+        this.hint_on = false;
     }
     set_answer(answer){
         this.answer = answer;
