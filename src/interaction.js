@@ -22,6 +22,15 @@ function create_stables(){
     stables_entrance.add_interact_btn("hassan","15","10","0","2","4",show_interact,"Shall we print 'Hassan' to console?", "Print",function(){console.log("Hassan");})
     scenes.push(stables_entrance);
     
+
+
+
+
+
+
+
+
+    
     var stables_interior = new Scene("stables-interior","./images/backgrounds/stables/interior.png");
     stables_interior.add_nav_btn("to-entrance","30","30",move,"stables-entrance");
     stables_interior.add_nav_btn("to-mirza","70","40",move,"stables-mirza");
