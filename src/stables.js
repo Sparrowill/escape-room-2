@@ -8,9 +8,9 @@ export function create_stables(){
     var stables_entrance = new Scene("stables-entrance","./images/backgrounds/stables/entrance.png");
     stables_entrance.add_nav_btn("to-interior","75","20",move,"stables-interior");
     stables_entrance.add_nav_btn("to-mirza","50","20",move,"stables-mirza");
-    stables_entrance.add_feedback_btn("sleigh","40","60","40","20", "10",show_text,"You have clicked the sleigh");
+    stables_entrance.add_feedback_btn("sleigh-rear","37","50","40","30", "15",show_text,"There's nothing in the back of this sleigh. Sleigh? Nay!");
     stables_entrance.add_feedback_btn("cart","60","40","40","20", "10",show_text,"You have clicked the cart");
-    stables_entrance.add_interact_btn("hassan","10","14","0","3","4",show_interact,"Shall we print 'Hassan' to console?", "Print",function(){console.log("Hassan");})
+    stables_entrance.add_interact_btn("hassan","10","13","0","4","5",show_interact,"Shall we print 'Hassan' to console?", "Print",function(){console.log("Hassan");})
     window.scenes.push(stables_entrance);
     
     stables_interior = new Scene("stables-interior","./images/backgrounds/stables/interior.png");
