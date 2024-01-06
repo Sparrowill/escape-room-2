@@ -10,6 +10,13 @@ export class Puzzle {
         this.answer;
         this.solved = false;
     }
+    create_element(style, type){
+        const element = document.createElement(type);
+        element.id = style;
+        element.classList.add(style);
+        this.children.push(element);
+        return element;
+    }
     activate() {
         this.active = true;
         var puzzle =  document.getElementById("puzzle-view-bg");
@@ -17,49 +24,32 @@ export class Puzzle {
         //Set background
         document.getElementById("puzzle-view").src=this.background
         // Set up exit button
-        const exit_btn = document.createElement("btn");
-        exit_btn.id = "exit-btn";
-        exit_btn.classList.add("exit-btn");
-        this.children.push(exit_btn);
+        const exit_btn = this.create_element("exit-btn","btn");
         exit_btn.addEventListener("click", () => {
             this.deactivate();
          });
         puzzle.appendChild(exit_btn);
         //Set up explanation button
-        const explanation_btn = document.createElement("btn");
-        explanation_btn.id = "explanation-btn";
-        explanation_btn.classList.add("explanation-btn");
-        this.children.push(explanation_btn);
+        const explanation_btn = this.create_element("explanation-btn","btn");
         explanation_btn.addEventListener("click", () => {
             this.show_explanation();
          });
          puzzle.appendChild(explanation_btn);
         //Set up hint button
-        const hint_btn = document.createElement("btn");
-        hint_btn.id = "hint-btn";
-        hint_btn.classList.add("hint-btn");
-        this.children.push(hint_btn);
+        const hint_btn = this.create_element("hint-btn","btn");
         hint_btn.addEventListener("click", () => {
             this.show_hints();
          });
          puzzle.appendChild(hint_btn);
         // Set up answer input
         // Create background
-        var text_box = document.createElement("div");
-        text_box.id = "answer-input-bg"
-        text_box.classList.add("answer-input-bg");
+        const text_box = this.create_element("answer-input-bg","div");
         // Create input text
-        const answer_input = document.createElement("input");
+        const answer_input = this.create_element("answer-input","input");
         answer_input.type = "text";
-        answer_input.id = "answer-input";
-        answer_input.classList.add("answer-input");
-        this.children.push(answer_input);
         // Create check answer btn
-        const answer_btn = document.createElement("btn");
-        answer_btn.id = "answer-btn";
+        const answer_btn = this.create_element("answer-btn","btn");
         answer_btn.innerText ="Check";
-        answer_btn.classList.add("answer-btn");
-        this.children.push(answer_btn);
         answer_btn.addEventListener("click", () => {
             var answer = answer_input.value;
             if(this.check_answer(answer)){

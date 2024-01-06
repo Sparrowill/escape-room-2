@@ -157,6 +157,8 @@ body{
     background-repeat: no-repeat;
     height:5%;
     width:5%; /*Jank to stop button being span*/
+    cursor:pointer;
+
 }
 .exit-btn{
     margin-top:10vh;
@@ -167,6 +169,8 @@ body{
     background-repeat: no-repeat;
     height: 5%;
     width:5%; /*Jank to stop button being span*/
+    cursor:pointer;
+
 }
 .hint-btn{
     display:flex;
@@ -176,6 +180,8 @@ body{
     background-repeat: no-repeat;
     height: 5%;
     width:5%; /*Jank to stop button being span*/
+    cursor:pointer;
+
 }
 .answer-input-bg{
     position: absolute;
