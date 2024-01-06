@@ -6,14 +6,14 @@ body, .inventory-bg, .room-view-bg {
 }
 
 body{
-    background-color: blue;
+    background-color: black;
     margin:0;
     height:100%;
     z-index: 0;
 }
 
 .inventory-bg {
-    background-color: rgba(64, 26, 12, 0.768);
+    background-color: rgba(0,0,0,0.5);
     /*background-image: url("./images/inventory/inventory-bg.png");
     background-size: cover;*/
     height: 10%;
@@ -34,14 +34,32 @@ body{
     height:100%;
 }
 .room-view-bg {
+    position:absolute;
     background-color: white;
     top:0%;
     height:100%;
-    z-index:1;
 }
 .room-view{
     width:100%;
     height:100%;
+}
+.puzzle-view-bg{
+    position:absolute;
+    background-color: transparent;
+    top:0%;
+    left:50%;
+    transform: translate(-50%, 0);
+    height:100%;
+    width:100%;
+    z-index:1;
+}
+.puzzle-view{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    z-index:2; 
 }
 .dialogue-bg{
     position: absolute;
@@ -52,7 +70,6 @@ body{
     max-width: 25%;
     border-radius: 10px;
     background-color: rgba(0,0,0,0.8);
-
     display: none;
     z-index:2;
 }
@@ -64,8 +81,6 @@ body{
 .dialogue-btn-container{
     display:none;
     justify-content: center;
-
- 
 }
 .interact-btn{
     text-align: center;
@@ -107,4 +122,39 @@ body{
     top: 50%;
     left: 50%;
     border: 2px solid black ;
+}
+.explanation-bg{
+    position: absolute;
+    padding: 0% 1% 0% 1%;
+    top:20%;
+    left:50%;
+    transform: translate(-50%, 0);
+    max-width: 40%;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.8);
+    z-index:3;
+}
+.explanation-text {
+    color: white;
+    text-align: center;
+}
+.explanation-exit {
+    cursor:pointer;
+    color:white;
+    background-color: transparent;
+    padding: 1px;
+    border: 3px solid white;
+    position: absolute;
+    top:0%;
+    right:0%;
+}
+.explanation-btn{
+    position:absolute;
+    background-image: url("./images/puzzles/explanation.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    top:10%;
+    left:0%;
+    height: 50px;
+    width: 50px;
 }
