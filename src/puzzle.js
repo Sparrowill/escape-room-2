@@ -57,13 +57,15 @@ export class Puzzle {
         const answer_btn = this.create_element("answer-btn","btn");
         answer_btn.innerText ="Check";
         answer_btn.addEventListener("click", () => {
-            var answer = answer_input.value;
-            if(this.check_answer(answer)){
-                console.log("Correct");
-            }
-            else{
-                console.log("Incorrect");
-            }   
+            if(!this.solved){
+                var answer = answer_input.value;
+                if(this.check_answer(answer)){
+                    console.log("Correct");
+                }
+                else{
+                    console.log("Incorrect");
+                }  
+            } 
          });
         // Add to doc
         text_box.appendChild(answer_input);

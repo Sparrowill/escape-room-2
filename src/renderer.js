@@ -19,16 +19,9 @@ document.getElementById("agree").addEventListener("click", function (){
 });
 
 // Create the room (player inventory)
-
-var room = new Player();
+export var room = new Player();
 // Start the room
 create_rooms();
 create_puzzles();
 
-var item = create_inventory_item("Test", "./images/inventory/inventory.png")
-room.add_to_inventory(item);
 
-
-function test(){
-    console.log("This func was called");
-}

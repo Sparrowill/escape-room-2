@@ -1,6 +1,3 @@
-// Player class houses the inventory.
-// Methods for 'add to inventory', 'Check if item is in inventory'
-
 export class Player {
     constructor(){
         this.inventory = [];
@@ -19,9 +16,20 @@ export class Player {
             container.appendChild(item);
         });
     }
+
+    inventory_contains(id){
+        this.inventory.forEach((item)=>{
+            if(item.id == id){
+                return true;
+            }
+        });
+        return false;
+    }
 }
 
 export function create_inventory_item(id,image){
+    var width = "80%";
+    var margin = "2%";
     //Create holder div
     const div = document.createElement("div");
     div.classList.add("inventory-column");
@@ -30,6 +38,8 @@ export function create_inventory_item(id,image){
     const img = document.createElement("img");
     img.classList.add("inventory-item");
     img.src = image;
+    img.style.width = width;
+    img.style.marginTop = margin;
     // Add mouse over event to make it larger
     div.addEventListener("mouseover",function (){
         img.style.marginTop = "100%";
@@ -38,8 +48,8 @@ export function create_inventory_item(id,image){
     });
     //Add mouse off event to make it go away again
     div.addEventListener("mouseout",function (){
-        img.style.marginTop = "0%";
-        img.style.width = "100%";
+        img.style.marginTop = margin;
+        img.style.width = width;
         img.style.backgroundColor= "transparent";
     });
     // Add image to div

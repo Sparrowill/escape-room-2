@@ -36,6 +36,7 @@ export class Scene {
     add_nav_btn(id,x,y,move,destination){
         const btn = document.createElement("button");
         btn.id = id;
+        // Title will give hover text on the button
         btn.classList.add("nav-btn");
         btn.style.left = x + "%";
         btn.style.top = y + "%";
