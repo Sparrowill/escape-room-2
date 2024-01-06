@@ -11,30 +11,54 @@ export class Puzzle {
     activate() {
         this.active = true;
         var puzzle =  document.getElementById("puzzle-view-bg");
+        puzzle.style.display="block";
         //Set background
         document.getElementById("puzzle-view").src=this.background
         // Set up exit button
-        
+        const exit_btn = document.createElement("btn");
+        exit_btn.id = "exit-btn";
+        exit_btn.classList.add("exit-btn");
+        this.btns.push(exit_btn);
+        exit_btn.addEventListener("click", () => {
+            this.deactivate();
+         });
+        puzzle.appendChild(exit_btn);
         //Set up explanation button
-        const btn = document.createElement("btn");
-        btn.id = "explanation-btn";
-        btn.classList.add("explanation-btn");
-        this.btns.push(btn);
-        btn.addEventListener("click", () => {
+        const explanation_btn = document.createElement("btn");
+        explanation_btn.id = "explanation-btn";
+        explanation_btn.classList.add("explanation-btn");
+        this.btns.push(explanation_btn);
+        explanation_btn.addEventListener("click", () => {
             this.show_explanation();
          });
-         puzzle.appendChild(btn);
+         puzzle.appendChild(explanation_btn);
         //Set up hint button
+        const hint_btn = document.createElement("btn");
+        hint_btn.id = "hint-btn";
+        hint_btn.classList.add("hint-btn");
+        this.btns.push(hint_btn);
+        hint_btn.addEventListener("click", () => {
+            this.show_hint();
+         });
+         puzzle.appendChild(hint_btn);
+
+
+        // Show explanation initially
+        this.show_explanation();
     }
 
     deactivate() {
-        //var room = document.getElementById("room-view-bg");
-        // Remove placed html DOM children, leave img
-        //room.replaceChildren();
-        //var img = document.createElement("img");
-        //img.id = "room-view";
-        //img.classList.add("room-view")
-        //room.appendChild(img)
+        var puzzle =  document.getElementById("puzzle-view-bg");
+        //Remove Puzzle
+        document.getElementById("puzzle-view").src="";
+        //Remove puzzle children
+        this.btns.forEach( (btn) => {
+            btn.remove();
+        });
+        puzzle.style.display="none";
+        if(this.explanation_on){
+            this.hide_explanation(); //In case it's still visible
+        }
         this.active = false;
     }
 

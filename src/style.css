@@ -143,18 +143,36 @@ body{
     color:white;
     background-color: transparent;
     padding: 1px;
-    border: 3px solid white;
+    border: 2px solid white;
     position: absolute;
     top:0%;
     right:0%;
 }
 .explanation-btn{
-    position:absolute;
+    display:flex;
+    flex-direction: column;
     background-image: url("./images/puzzles/explanation.png");
     background-size: contain;
     background-repeat: no-repeat;
-    top:10%;
-    left:0%;
-    height: 50px;
-    width: 50px;
+    height:5%;
+    width:5%; /*Jank to stop button being span*/
+}
+.exit-btn{
+    margin-top:10vh;
+    display:flex;
+    flex-direction: column;
+    background-image: url("./images/puzzles/exit.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 5%;
+    width:5%; /*Jank to stop button being span*/
+}
+.hint-btn{
+    display:flex;
+    flex-direction: column;
+    background-image: url("./images/puzzles/hint.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 5%;
+    width:5%; /*Jank to stop button being span*/
 }
