@@ -45,7 +45,7 @@ body{
 }
 .puzzle-view-bg{
     position:absolute;
-    background-color: transparent;
+    background-color: rgba(0,0,0,0.6);
     top:0%;
     left:50%;
     transform: translate(-50%, 0);
@@ -176,4 +176,27 @@ body{
     background-repeat: no-repeat;
     height: 5%;
     width:5%; /*Jank to stop button being span*/
+}
+.answer-input-bg{
+    position: absolute;
+    bottom:5%;
+    left:50%;
+    transform: translate(-50%, 0);
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 3;
+}
+.answer-input{
+    background-color: white;
+    padding-top:5px;
+    width:70%;
+}
+.answer-btn{
+    cursor:pointer;
+    border-radius:1px;
+    display: inline;
+    padding: 3px;
+    margin-left: 5%;
+    background-color: white;
 }

@@ -2,6 +2,7 @@ import {create_rooms, show_interact} from './interaction.js'
 import {create_puzzles} from './puzzles.js'
 // Event Listeners for buttons
 
+//Go Button in inventory used for event testing
 document.getElementById("test").addEventListener("click", function (){
    // show_text("Text ");
    //show_interact("Interaction Test With longer text","Agree but longer",test);

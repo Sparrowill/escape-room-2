@@ -5,8 +5,10 @@ export class Puzzle {
         this.active = false;
         this.explanation = "";
         this.hints = "";
-        this.btns = [];
+        this.children = [];
         this.explanation_on = false;
+        this.answer;
+        this.solved = false;
     }
     activate() {
         this.active = true;
@@ -18,7 +20,7 @@ export class Puzzle {
         const exit_btn = document.createElement("btn");
         exit_btn.id = "exit-btn";
         exit_btn.classList.add("exit-btn");
-        this.btns.push(exit_btn);
+        this.children.push(exit_btn);
         exit_btn.addEventListener("click", () => {
             this.deactivate();
          });
@@ -27,7 +29,7 @@ export class Puzzle {
         const explanation_btn = document.createElement("btn");
         explanation_btn.id = "explanation-btn";
         explanation_btn.classList.add("explanation-btn");
-        this.btns.push(explanation_btn);
+        this.children.push(explanation_btn);
         explanation_btn.addEventListener("click", () => {
             this.show_explanation();
          });
@@ -36,13 +38,41 @@ export class Puzzle {
         const hint_btn = document.createElement("btn");
         hint_btn.id = "hint-btn";
         hint_btn.classList.add("hint-btn");
-        this.btns.push(hint_btn);
+        this.children.push(hint_btn);
         hint_btn.addEventListener("click", () => {
-            this.show_hint();
+            this.show_hints();
          });
          puzzle.appendChild(hint_btn);
-
-
+        // Set up answer input
+        // Create background
+        var text_box = document.createElement("div");
+        text_box.id = "answer-input-bg"
+        text_box.classList.add("answer-input-bg");
+        // Create input text
+        const answer_input = document.createElement("input");
+        answer_input.type = "text";
+        answer_input.id = "answer-input";
+        answer_input.classList.add("answer-input");
+        this.children.push(answer_input);
+        // Create check answer btn
+        const answer_btn = document.createElement("btn");
+        answer_btn.id = "answer-btn";
+        answer_btn.innerText ="Check";
+        answer_btn.classList.add("answer-btn");
+        this.children.push(answer_btn);
+        answer_btn.addEventListener("click", () => {
+            var answer = answer_input.value;
+            if(this.check_answer(answer)){
+                console.log("Correct");
+            }
+            else{
+                console.log("Incorrect");
+            }   
+         });
+        // Add to doc
+        text_box.appendChild(answer_input);
+        text_box.appendChild(answer_btn);
+        puzzle.appendChild(text_box);
         // Show explanation initially
         this.show_explanation();
     }
@@ -52,8 +82,8 @@ export class Puzzle {
         //Remove Puzzle
         document.getElementById("puzzle-view").src="";
         //Remove puzzle children
-        this.btns.forEach( (btn) => {
-            btn.remove();
+        this.children.forEach( (child) => {
+            child.remove();
         });
         puzzle.style.display="none";
         if(this.explanation_on){
@@ -107,6 +137,25 @@ export class Puzzle {
     }
     set_hints(hints){
         this.hints=hints;
+    }
+
+    show_hints(){
+        console.log("Hints are shown now");
+    }
+    set_answer(answer){
+        this.answer = answer;
+    }
+    check_answer(check_answer){
+        if (this.answer == check_answer){
+            this.solved = true;
+            return true;
+        } else{
+            this.solved = false;
+            return false;
+        }
+    }
+    is_solved(){
+        return this.solved;
     }
 }
 
