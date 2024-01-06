@@ -1,4 +1,5 @@
 import {Scene} from "./scene.js"
+import { stables_plumbing } from "./puzzles.js";
 
 // Global array to store all scenes for looping through.
 var scenes = [];
@@ -29,7 +30,7 @@ function create_stables(){
     var stables_mirza = new Scene("stables-mirza","./images/backgrounds/stables/mirza.png");
     stables_mirza.add_nav_btn("to-entrance","5","90",move,"stables-entrance");
     stables_mirza.add_nav_btn("to-interior","95","90",move,"stables-interior");
-    stables_mirza.add_interact_btn("board","45","60","10","20","20",show_interact,"There's something behind this board. ", "Look",function(){console.log("Move to puzzle scene");})
+    stables_mirza.add_interact_btn("board","45","60","10","20","20",show_interact,"There's something behind this board. ", "Look",function(){stables_plumbing.activate();})
     scenes.push(stables_mirza);
 
     stables_entrance.activate();

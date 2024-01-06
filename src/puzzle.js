@@ -109,13 +109,7 @@ export class Puzzle {
         this.hints=hints;
     }
 }
-    // Set explanation takes a long string of text which explains the puzzle
-    /*You find a large mess of pipework behind the screen. A plumber has clearly been working on the system, but hasn't started taking
-    things apart yet. You find a note that reads "To the next poor sod that has to work on this. I've given up, but I've left you my map of the pipework. I hope it helps."
-    ". */
-    // Show explanation txt displays this on top of the puzzle, alongside an OK button
-    // Explanation is reachable from top left at all times.
-    // Have a common i info icon in all puzzle screens?
+
     // This could then also house the hint section. 
     // Set hints takes an array and creates a dropdown based on how many are given
 
