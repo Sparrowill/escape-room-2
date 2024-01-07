@@ -12,9 +12,9 @@ export function create_stables(){
     stables_entrance.add_nav_btn("to-mirza","50","20",move,"stables-mirza");
     stables_entrance.add_feedback_btn("sleigh-rear","37","55","40","30", "13",show_text,"There's nothing in the back of this sleigh. Sleigh? Nay!");
     stables_entrance.add_interact_btn("sleight-seat","43","43","20","16","15",show_interact,"There's something under this seat cushion. ", "Look",function(){
-        if(!room.inventory_contains("stables-sleigh-placeholder")){
-            room.add_to_inventory("stables-sleigh-placeholder");
-            stables_entrance.show_long_text("TEMPORARY TEXT <br>You found a THING. This will surely be helpful in the future.. Right?")
+        if(!room.inventory_contains("gun-clue")){
+            room.add_to_inventory("gun-clue");
+            stables_entrance.show_long_text("Hidden under the cushion seat was a piece of paper with a selection of charcoal drawings. They're in 5 distinct rows");
         } else{
             show_text("There's nothing more under here.");
         }
@@ -66,11 +66,6 @@ export function create_stables(){
     stables_mirza.add_feedback_btn("sink","35","50","0","10","10",show_text,"It's either a sink, or a feed bin. I don't know. Either way it's empty.");
     stables_mirza.add_feedback_btn("pommel","32","10","0","30","18",show_text,"A pair of woderfully ornate pommels. Useful for topping things, I suppose.");
     stables_mirza.add_feedback_btn("case","45","10","0","12","24",show_text,"There's nothing of interest in this case");
-
-
-
-
-
 
     window.scenes.push(stables_mirza);
 
