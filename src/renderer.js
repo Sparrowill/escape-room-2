@@ -1,5 +1,6 @@
 import {create_rooms} from './interaction.js'
-import { Player, create_inventory_item } from './player.js';
+import { Player} from './player.js';
+import { create_inventory } from './inventory.js';
 import {create_puzzles} from './puzzles.js'
 // Event Listeners for buttons
 
@@ -21,6 +22,7 @@ document.getElementById("agree").addEventListener("click", function (){
 // Create the room (player inventory)
 export var room = new Player();
 // Start the room
+create_inventory();
 create_rooms();
 create_puzzles();
 
