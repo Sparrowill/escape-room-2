@@ -59,12 +59,7 @@ export class Puzzle {
         answer_btn.addEventListener("click", () => {
             if(!this.solved){
                 var answer = answer_input.value;
-                if(this.check_answer(answer)){
-                    console.log("Correct");
-                }
-                else{
-                    console.log("Incorrect");
-                }  
+                this.check_answer(answer)
             } 
          });
         // Add to doc
@@ -84,7 +79,7 @@ export class Puzzle {
             child.remove();
         });
         puzzle.style.display="none";
-        if(this.explanation_on){
+        if(this.long_text_on){
             this.hide_long_text(); //In case it's still visible
         }
         if(this.hint_on){
@@ -216,6 +211,9 @@ export class Puzzle {
         this.answer = answer;
     }
     check_answer(check_answer){
+        if(typeof(check_answer) == "string"){
+            check_answer = check_answer.toUpperCase();
+        }
         if (this.answer == check_answer){
             this.solved =  true;
             this.show_long_text(this.success_text);
