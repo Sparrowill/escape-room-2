@@ -40,6 +40,7 @@ export function create_stables(){
     stables_interior.add_feedback_btn("blurry-plaque","47","17","0","3","2",show_text,"It's a name plaque for a horse. I can't read it from over here.");
     stables_interior.add_feedback_btn("lance","44","10","0","4","25",show_text,"That's a lance. Seeing as I don't have a squire, or a huge interest in jousting. I'm going to leave it here.");
     stables_interior.add_interact_btn("fire-alarm", "27", "10","0","3","2",show_interact,"It has a button. Press it?","Press",fire_alarm);
+    stables_interior.add_interact_btn("fire-alarm", "30", "18","0","8","3",show_interact,"It has a button. Press it?","Press",fire_alarm);
     stables_interior.add_interact_btn("bench-paper", "80", "45","0","8","7",show_interact,"There's a lot of stuff pushed down the side of this bench. Do you want to look through it?","Yes",function (){
         if(!room.inventory_contains("stables-bench-placeholder")){
             room.add_to_inventory("stables-bench-placeholder");
@@ -60,6 +61,17 @@ export function create_stables(){
             stables_plumbing.activate();
         }
     })
+    stables_mirza.add_feedback_btn("mirza","22","32","0","5","8",show_text,"It's a name plaque for a horse. It says 'Mirza'.");
+    stables_mirza.add_feedback_btn("lance","0","10","0","10","18",show_text,"That's a lance. Seeing as I don't have a squire, or a huge interest in jousting. I'm going to leave it here.");
+    stables_mirza.add_feedback_btn("sink","35","50","0","10","10",show_text,"It's either a sink, or a feed bin. I don't know. Either way it's empty.");
+    stables_mirza.add_feedback_btn("pommel","32","10","0","30","18",show_text,"A pair of woderfully ornate pommels. Useful for topping things, I suppose.");
+    stables_mirza.add_feedback_btn("case","45","10","0","12","24",show_text,"There's nothing of interest in this case");
+
+
+
+
+
+
     window.scenes.push(stables_mirza);
 
     // Load first scene. Starts the room.
