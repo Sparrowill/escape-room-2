@@ -87,3 +87,8 @@ function enable_btns(){
         }
     });
 }
+
+export function fire_alarm(){
+    new Audio("./audio/firealarm.mp3").play();
+    show_text("That's the fire alarm. Don't touch that...")
+}
