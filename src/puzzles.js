@@ -4,7 +4,7 @@ import {move} from "./interaction.js";
 import {room} from "./renderer.js"
 
 var puzzles = [];
-export var stables_plumbing, armoury_guns;
+export var stables_plumbing, armoury_guns, armoury_music;
 
 export function create_puzzles(){
     stables_plumbing = new Puzzle("stables_plumbing","./images/puzzles/stables/blank_maze.png")
@@ -24,4 +24,13 @@ export function create_puzzles(){
     });
     armoury_guns.set_hints(["This puzzle is only solvable if you have found the gamekeeper's hidden drawing.","You're looking for a 5-letter word","If the first gun on the gamekeeper's note is where you should start drawing, what are the subsequent guns?","This puzzle is effectively a glorified dot-to-dot.","The answer is QUACK"]);
     armoury_guns.set_answer("QUACK");
+    puzzles.push(armoury_guns);
+
+    armoury_music = new Puzzle("armoury-music","./images/puzzles/armoury/music.png");
+    armoury_music.set_explanation("You open the ornate chest in the centre of the table and immediately a hidden music box starts playing. Inside the box is a piece of folded paper with some sheet music on it. The sheet music doesn't seem to correspond to the music playing, at least not initially...<br><br> There is a small wooden box inside the chest, with an intricate 5 letter combination lock on it. ")
+    armoury_music.set_success_text("Correct! Upon entering the word 'Spring' into the combination lock, it opens, revealing a set of lock picks. I suppose you can unlock the next door now... Be careful not to scratch the wood of the door. Most of the items in this house are very precious!",function(){ room.add_to_inventory("lock-picks")});
+    armoury_music.set_hints(["Make sure your sound is turned up for this one!", "Can you hear the electronic beeps hidden inside the music box tune?", "The beeps are morse code, which can be deciphered using the sheet you found in the chest.", "The Morse code is ' . . . / . _ _ . / . _ . / . . / _  . / _  _ .","If you don't read sheet music, why not look up a decipher chart online?","The answer is Spring"]);
+    armoury_music.set_answer("SPRING");
+    puzzles.push(armoury_music);
+
 }
