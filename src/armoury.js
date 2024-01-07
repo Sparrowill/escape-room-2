@@ -18,18 +18,22 @@ export function create_armoury(){
     armoury_entrance.add_nav_btn("to-stables","2","60",move,"stables-entrance");
     armoury_entrance.add_interact_btn("music-puzzle","53","51","0","11","10",show_interact,"It's an old box, with an integrated lock on the front","Look",function (){
         if(room.inventory_contains("gun-key")){
-            // Start Puzzle
-            armoury_music.activate();
-            //Start music
-            var audio = new Audio("./audio/armoury_music.mp3");
-            audio.loop = true;
-            audio.play();
-            var interval = setInterval(function () {
-                if(!armoury_music.is_active()){
-                    audio.pause();
-                    clearInterval(interval);
-                    }
-            },10);
+            if(armoury_music.is_solved()){
+                show_text("Please don't open that box again. The music was repetitive enough the first time round!");
+            } else{
+                // Start Puzzle
+                armoury_music.activate();
+                //Start music
+                var audio = new Audio("./audio/armoury_music.mp3");
+                audio.loop = true;
+                audio.play();
+                var interval = setInterval(function () {
+                    if(!armoury_music.is_active()){
+                        audio.pause();
+                        clearInterval(interval);
+                        }
+                },10);
+            }
         } else{
             show_text("The box is locked. I need a key.");
         }
