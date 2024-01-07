@@ -23,12 +23,17 @@ export class Player {
     }
 
     inventory_contains(id){
+        var found = false;
         this.inventory.forEach((item)=>{
             if(item.id == id){
-                return true;
+                found = true;
             }
         });
-        return false;
+        if (found){
+            return true;
+        } else {
+            return false;
+        }
     }
     create_inventory_item(id,image){
         var width = "80%";

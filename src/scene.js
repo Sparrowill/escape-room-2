@@ -6,6 +6,8 @@ export class Scene {
         this.nav_btns = [];
         this.feedback_btns = [];
         this.interact_btns = [];
+        this.long_text_on = false;
+        this.current_text = "";
     }
     activate() {
         this.active = true;
@@ -96,6 +98,44 @@ export class Scene {
         btn.addEventListener("click", () => {
             show_interact(question, text, agreeFunc)
         });
+    }
+    show_long_text(input_text){
+        // If it's new text to show, turn off the old one
+        if(this.long_text_on && this.current_text != input_text){
+            this.hide_long_text();
+        }
+        // If there isn't a long text on already
+        if(this.long_text_on == false){
+            this.current_text = input_text;
+            // Create bckground
+            var text_box = document.createElement("div");
+            text_box.id = "long-text-bg"
+            text_box.classList.add("long-text-bg");
+            // Create long text
+            var text = document.createElement("p");
+            text.id = "long-text-text";
+            text.classList.add("long-text-text");
+            text.innerHTML=input_text;
+            //Create exit button
+            var exit = document.createElement("btn");
+            exit.id = "long-text-exit";
+            exit.classList.add("long-text-exit");
+            exit.textContent = "X";
+            exit.addEventListener("click", () => {
+                this.hide_long_text()
+            });
+            // Add all to doc
+            text_box.appendChild(text);
+            text_box.appendChild(exit);
+            document.getElementById("room-view-bg").appendChild(text_box);
+            this.long_text_on = true;
+        }
+    }
+    hide_long_text(){
+        var long_text = document.getElementById("long-text-bg");
+        long_text.replaceChildren();
+        long_text.remove();
+        this.long_text_on = false;
     }
 }
 
