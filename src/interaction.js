@@ -1,5 +1,6 @@
 import { create_stables } from "./stables.js";
 import { create_armoury } from "./armoury.js";
+import { create_billiards } from "./billiards.js";
 
 // Global array to store all scenes for looping through.
 window.scenes = [];
@@ -11,6 +12,7 @@ window.cancel = false;
 export function create_rooms(){
     create_stables();
     create_armoury();
+    create_billiards()
 }
 
 //Function to move from one scene to another
@@ -35,7 +37,7 @@ export function show_text(text){
     document.getElementById("dialogue-text").innerHTML = text;
     // dialogue box appears
     container.style.display = "block";
-    var display_duration = 1500 + ( text.length * 30 );
+    var display_duration = 1000 + ( text.length * 30 );
     // Display the text for a time period, depending on the length of the text
     setTimeout(function (){
         container.style.display = "none";
