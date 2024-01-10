@@ -97,5 +97,5 @@ export function create_armoury(){
 
     window.scenes.push(armoury_interior);
 
-   armoury_interior.activate();
+   
 }
