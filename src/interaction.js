@@ -9,6 +9,9 @@ window.scenes = [];
 window.agree = false;
 window.cancel = false;
 
+//Global var for show_text
+window.timeout;
+
 export function create_rooms(){
     create_stables();
     create_armoury();
@@ -31,7 +34,9 @@ export function move(destination){
 
 // Function to display text in the dialogue box
 export function show_text(text){
-    disable_btns();
+    if( window.timeout != undefined){
+        clearTimeout(window.timeout);
+    }
     var container = document.getElementById("dialogue-bg");
     // Set text value (auto expands and wraps)
     document.getElementById("dialogue-text").innerHTML = text;
@@ -39,14 +44,17 @@ export function show_text(text){
     container.style.display = "block";
     var display_duration = 1000 + ( text.length * 30 );
     // Display the text for a time period, depending on the length of the text
-    setTimeout(function (){
+    window.timeout = setTimeout(function (){
         container.style.display = "none";
-        enable_btns();
     },display_duration);
 }
 
+
 //Function to display an interactive text dialogue box
 export function show_interact(question, text, agreeFunc){
+    if( window.timeout != undefined){
+        clearTimeout(window.timeout);
+    }
     disable_btns();
     document.getElementById("dialogue-btn-container").style.display = "flex"
     var container = document.getElementById("dialogue-bg");
