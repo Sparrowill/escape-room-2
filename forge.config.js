@@ -31,7 +31,7 @@ module.exports = {
       config: {
         repository: {
           owner: "Sparrowill",
-          name: "escape-room"
+          name: "escape-room-2"
         },
       }
   }
