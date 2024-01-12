@@ -4,8 +4,11 @@
   "description": "A Second Escape Room built in Electron",
   "main": "src/main.js",
   "scripts": {
-    "start": "electron .",
-    "make": "electron-forge make"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
   },
   "author": "WSPARROW",
   "license": "ISC",
