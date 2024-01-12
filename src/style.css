@@ -198,6 +198,27 @@ body{
     width:5%; /*Jank to stop button being span*/
     cursor:pointer;
 
+}.vol-up-btn{
+    display:flex;
+    flex-direction: column;
+    background-image: url("./images/puzzles/vol_up.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 5%;
+    width:5%; /*Jank to stop button being span*/
+    cursor:pointer;
+
+}
+.vol-down-btn{
+    display:flex;
+    flex-direction: column;
+    background-image: url("./images/puzzles/vol_down.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 5%;
+    width:5%; /*Jank to stop button being span*/
+    cursor:pointer;
+
 }
 .answer-input-bg{
     position: absolute;

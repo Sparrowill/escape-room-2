@@ -15,6 +15,7 @@ export class Puzzle {
         this.long_text_on = false;
         this.answer;
         this.solved = false;
+        this.music= false;
     }
     create_element(style, type){
         const element = document.createElement(type);
@@ -47,6 +48,29 @@ export class Puzzle {
             this.show_hints();
          });
          puzzle.appendChild(hint_btn);
+         // If puzzle involves music
+         var audio = document.getElementById("vivaldi");
+         console.log(audio);
+         if(this.music){
+            //Set up volume Up button
+            const vol_up_btn = this.create_element("vol-up-btn","btn");
+            vol_up_btn.addEventListener("click", (audio) => {
+                console.log(audio.volume)
+                if(audio.volume < 1){
+                    audio.volume=0.80000;
+                }
+            });
+            puzzle.appendChild(vol_up_btn);
+            //Set up volume down button
+            const vol_down_btn = this.create_element("vol-down-btn","btn");
+            vol_down_btn.addEventListener("click", (audio) => {
+                console.log(audio.volume);
+                if(audio.volume > 0.1){
+                    audio.volume=0.20000;
+                }
+            });
+            puzzle.appendChild(vol_down_btn);
+        }
         // Set up answer input
         // Create background
         const text_box = this.create_element("answer-input-bg","div");
@@ -105,6 +129,10 @@ export class Puzzle {
         this.success_func = success_func;
     }
 
+    is_music_puzzle(){
+        this.music = true;
+    }
+
     show_long_text(input_text){
         // If it's new text to show, turn off the old one
         if(this.long_text_on && this.current_text != input_text){
@@ -137,6 +165,7 @@ export class Puzzle {
             this.long_text_on = true;
         }
     }
+
     hide_long_text(){
         var long_text = document.getElementById("long-text-bg");
         long_text.replaceChildren();
@@ -144,9 +173,11 @@ export class Puzzle {
         this.long_text_on = false;
 
     }
+
     set_hints(hints){
         this.hints=hints;
     }
+
     show_hints(){
         if(!this.hint_on){
             // Create div
@@ -207,9 +238,11 @@ export class Puzzle {
         hint_bg.remove();
         this.hint_on = false;
     }
+
     set_answer(answer){
         this.answer = answer;
     }
+
     check_answer(check_answer){
         if(typeof(check_answer) == "string"){
             check_answer = check_answer.toUpperCase();
@@ -224,6 +257,7 @@ export class Puzzle {
             return false;
         }
     }
+
     is_solved(){
         return this.solved;
     }

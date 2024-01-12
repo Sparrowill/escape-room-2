@@ -23,18 +23,27 @@ export function create_armoury(){
             if(armoury_music.is_solved()){
                 show_text("Please don't open that box again. The music was repetitive enough the first time round!");
             } else{
-                // Start Puzzle
-                armoury_music.activate();
-                //Start music
-                var audio = new Audio("./audio/armoury_music.mp3");
-                audio.loop = true;
-                audio.play();
-                var interval = setInterval(function () {
-                    if(!armoury_music.is_active()){
-                        audio.pause();
-                        clearInterval(interval);
-                        }
-                },10);
+                console.log("Here")
+                // // Start Puzzle
+                // armoury_music.activate();
+                // //Start music
+                //                 // var audio = document.createElement("audio");
+                // // audio.setAttribute("src","./audio/armoury_music.mp3");
+                // // audio.loop = true;
+                // // audio.volume = 0.1;
+                // // console.log(audio);
+                // // audio.id = "vivaldi";
+                // // console.log(audio);
+                // // document.getElementById("room-view-bg").appendChild(audio);
+                // // //console.log(audio);
+                // // audio.play();
+                // var interval = setInterval(function () {
+                //     console.log(audio.volume);
+                //     if(!armoury_music.is_active()){
+                //         audio.pause();
+                //         clearInterval(interval);
+                //         }
+                // },10);
             }
         } else{
             show_text("The box is locked. I need a key.");

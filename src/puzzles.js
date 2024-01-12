@@ -40,6 +40,7 @@ export function create_puzzles(){
     });
     armoury_music.set_hints(["Make sure your sound is turned up for this one!", "Can you hear the electronic beeps hidden inside the music box tune?", "The beeps are morse code, which can be deciphered using the sheet you found in the chest.", "The Morse code is ' . . . / . _ _ . / . _ . / . . / _  . / _  _ .","If you don't read sheet music, why not look up a decipher chart online?","The answer is Spring"]);
     armoury_music.set_answer("SPRING");
+    armoury_music.is_music_puzzle();
     puzzles.push(armoury_music);
 
 }
