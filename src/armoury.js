@@ -28,13 +28,9 @@ export function create_armoury(){
         } else{
             show_text("The box is locked. I need a key.");
         }
-    })
+    });
     armoury_entrance.add_feedback_btn("floor","47","70","0","20","20",show_text,"An interesting floor pattern, but that's all it is.");
-
-
-
     window.scenes.push(armoury_entrance); 
-
 
     var armoury_interior = new Scene("armoury-interior","./images/backgrounds/armoury/interior.png");
     armoury_interior.add_nav_btn("to-entrance","50","35",move,"armoury-entrance");
@@ -59,23 +55,12 @@ export function create_armoury(){
             if(armoury_music.is_solved()){
                 show_text("Please don't open that box again. The music was repetitive enough the first time round!");
             } else{
-                // Start Puzzle
-                armoury_music.activate();
-                //Start music
-                var audio = new Audio("./audio/armoury_music.mp3");
-                audio.loop = true;
-                audio.play();
-                var interval = setInterval(function () {
-                    if(!armoury_music.is_active()){
-                        audio.pause();
-                        clearInterval(interval);
-                        }
-                },10);
+              armoury_music.activate();
             }
         } else{
             show_text("The box is locked. I need a key.");
         }
-    })
+    });
     armoury_interior.add_feedback_btn("double-doors","20","10","0","44","16",show_text,"Those doors are bolted from the other side. No way through.");
     armoury_interior.add_feedback_btn("swords-1","37","10","0","30","10",show_text,"Nothing of interest, except for the fact it's a wall of swords.");
     armoury_interior.add_feedback_btn("swords-2","62","10","0","30","8",show_text,"Ooh, this one has a shield. Fancy. Still, it's just a wall of swords.")
