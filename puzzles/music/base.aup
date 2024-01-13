@@ -1,10 +1,10 @@
 <?xml version="1.0" standalone="no" ?>
 <!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
-<project xmlns="http://audacity.sourceforge.net/xml/" projname="base_data" version="1.3.0" audacityversion="2.3.3" sel0="1.2664461768" sel1="9.0131849927" vpos="0" h="0.0000000000" zoom="135.0245599924" rate="48000.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="base_data" version="1.3.0" audacityversion="2.3.3" sel0="3.7400603270" sel1="3.7400603270" vpos="0" h="0.0000000000" zoom="135.0245599924" rate="48000.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
 	<tags>
 		<tag name="Software" value="Lavf59.27.100"/>
 	</tags>
-	<wavetrack name="base" isSelected="0" height="150" minimized="0" channel="0" linked="1" mute="0" solo="0" rate="48000" gain="0.562341" pan="0.0" colorindex="0">
+	<wavetrack name="base" isSelected="1" height="150" minimized="0" channel="0" linked="1" mute="0" solo="0" rate="48000" gain="0.794328" pan="0.0" colorindex="0">
 		<waveclip offset="0.00000000" colorindex="0">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="484005">
 				<waveblock start="0">
@@ -17,7 +17,7 @@
 			<envelope numpoints="0"/>
 		</waveclip>
 	</wavetrack>
-	<wavetrack name="base" isSelected="0" height="150" minimized="0" channel="1" linked="0" mute="0" solo="0" rate="48000" gain="0.562341" pan="0.0" colorindex="0">
+	<wavetrack name="base" isSelected="1" height="150" minimized="0" channel="1" linked="0" mute="0" solo="0" rate="48000" gain="0.794328" pan="0.0" colorindex="0">
 		<waveclip offset="0.00000000" colorindex="0">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="484005">
 				<waveblock start="0">
@@ -30,7 +30,7 @@
 			<envelope numpoints="0"/>
 		</waveclip>
 	</wavetrack>
-	<wavetrack name="Audio Track" isSelected="1" height="150" minimized="0" channel="2" linked="0" mute="0" solo="0" rate="48000" gain="0.281838" pan="0.0" colorindex="0">
+	<wavetrack name="Audio Track" isSelected="0" height="150" minimized="0" channel="2" linked="0" mute="0" solo="0" rate="48000" gain="0.316228" pan="0.0" colorindex="0">
 		<waveclip offset="1.36270789" colorindex="0">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="4622">
 				<waveblock start="0">
