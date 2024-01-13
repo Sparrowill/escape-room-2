@@ -16,6 +16,7 @@ export class Puzzle {
         this.answer;
         this.solved = false;
         this.music= false;
+        this.playing = false;
     }
     create_element(style, type){
         const element = document.createElement(type);
@@ -30,9 +31,19 @@ export class Puzzle {
         puzzle.style.display="block";
         //Set background
         document.getElementById("puzzle-view").src=this.background
+        if(this.music){
+            var audio = new Audio(this.url);
+            audio.loop = true;
+            audio.volume=0.5;
+            audio.play();
+            this.playing = true;
+        }
         // Set up exit button
         const exit_btn = this.create_element("exit-btn","btn");
         exit_btn.addEventListener("click", () => {
+            if(this.music){
+                audio.pause();
+            }
             this.deactivate();
          });
         puzzle.appendChild(exit_btn);
@@ -49,27 +60,37 @@ export class Puzzle {
          });
          puzzle.appendChild(hint_btn);
          // If puzzle involves music
-         var audio = document.getElementById("vivaldi");
-         console.log(audio);
          if(this.music){
             //Set up volume Up button
             const vol_up_btn = this.create_element("vol-up-btn","btn");
-            vol_up_btn.addEventListener("click", (audio) => {
-                console.log(audio.volume)
-                if(audio.volume < 1){
-                    audio.volume=0.80000;
+            vol_up_btn.addEventListener("click", () => {
+                if(audio.volume<0.9){
+                    audio.volume+=0.1;
                 }
             });
             puzzle.appendChild(vol_up_btn);
             //Set up volume down button
             const vol_down_btn = this.create_element("vol-down-btn","btn");
-            vol_down_btn.addEventListener("click", (audio) => {
-                console.log(audio.volume);
-                if(audio.volume > 0.1){
-                    audio.volume=0.20000;
+            vol_down_btn.addEventListener("click", () => {
+                if(audio.volume>0.1){
+                    audio.volume-=0.1;
                 }
+
             });
             puzzle.appendChild(vol_down_btn);
+            //Set up play/psue button
+            const play_pause_btn = this.create_element("play-pause-btn","btn");
+            play_pause_btn.addEventListener("click", () => {
+                if(this.playing){
+                    audio.pause();
+                    this.playing = false;
+                } else{
+                    audio.play();
+                    this.playing = true;
+                }
+            });
+            puzzle.appendChild(play_pause_btn);
+
         }
         // Set up answer input
         // Create background
@@ -129,8 +150,9 @@ export class Puzzle {
         this.success_func = success_func;
     }
 
-    is_music_puzzle(){
+    is_music_puzzle(url){
         this.music = true;
+        this.url = url
     }
 
     show_long_text(input_text){

@@ -220,6 +220,17 @@ body{
     cursor:pointer;
 
 }
+.play-pause-btn{
+    display:flex;
+    flex-direction: column;
+    background-image: url("./images/puzzles/play_pause.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 5%;
+    width:5%; /*Jank to stop button being span*/
+    cursor:pointer;
+
+}
 .answer-input-bg{
     position: absolute;
     bottom:5%;
