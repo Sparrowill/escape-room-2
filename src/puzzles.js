@@ -3,10 +3,11 @@ import {stables_interior} from "./stables.js";
 import {move} from "./interaction.js";
 import {room} from "./renderer.js"
 import { armoury_entrance } from "./armoury.js";
+import { Scales } from "./ball.js";
 
 
 var puzzles = [];
-export var stables_plumbing, armoury_guns, armoury_music;
+export var stables_plumbing, armoury_guns, armoury_music, billiards_ball;
 
 export function create_puzzles(){
     stables_plumbing = new Puzzle("stables_plumbing","./images/puzzles/stables/blank_maze.png")
@@ -43,4 +44,7 @@ export function create_puzzles(){
     armoury_music.is_music_puzzle("./audio/armoury_music2.mp3");
     puzzles.push(armoury_music);
 
+    billiards_ball = new Scales("billiards-ball","./images/puzzles/billiards/base.png");
+    billiards_ball.set_explanation("There appears to be a small set of scales in the cabinet, alongside 9 identical looking billiard balls. A note reads: <br><br>One of these balls is heavier than the others. Undetectable by feel alone, but these scales are accurate enough to determine the heavier ball. <br> Using the scale only twice, identify the heavier ball, and write its number in the box below.<br><br> The heavier ball will randomise each time you open this puzzle, so no cheating!")
+    puzzles.push(billiards_ball);
 }

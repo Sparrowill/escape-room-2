@@ -229,7 +229,16 @@ body{
     height: 5%;
     width:5%; /*Jank to stop button being span*/
     cursor:pointer;
-
+}
+.reset-btn{
+    display:flex;
+    flex-direction: column;
+    background-image: url("./images/puzzles/reset.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 5%;
+    width:5%; /*Jank to stop button being span*/
+    cursor:pointer;
 }
 .answer-input-bg{
     position: absolute;
@@ -295,4 +304,22 @@ body{
     padding: 3px;
     margin-left: 5%;
     background-color: white;
+}
+.scales-sprite{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    z-index:3; 
+}
+.ball-sprite{
+    position:absolute;
+    left:27%;
+    width: 5%;
+    height: auto;
+    padding-left: 4px;
+    padding-right: 4px;
+    top:70%;
+    z-index:3; 
 }
