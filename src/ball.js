@@ -15,6 +15,7 @@ class Ball {
         this.number = number;
         this.left;
         this.ball_img;
+        this.placed = false;
 
     }
     weight(){
@@ -73,10 +74,12 @@ export class Scales extends Puzzle{
         }
         //Recreate all balls
         for(var i =0; i< this.balls.length; i++){
+            this.balls[i].placed = false;
             var img = this.balls[i].get_img();
             img.style.left=this.balls[i].get_left();
             img.style.top = "70%";
             img.style.width = "3%";
+            img.style.bottom = "";
             puzzle.appendChild(img);
         }
     }
@@ -153,16 +156,19 @@ export class Scales extends Puzzle{
         }
       
         function dragMouseDown(e) {
-          console.log("Grabbed Ball #");
-          console.log(ball.number+1);
-          e = e || window.event;
-          e.preventDefault();
-          // get the mouse cursor position at startup:
-          pos3 = e.clientX;
-          pos4 = e.clientY;
-          document.onmouseup = closeDragElement;
-          // call a function whenever the cursor moves:
-          document.onmousemove = elementDrag;
+            //Check if ball is already inside div
+            if(!ball.placed){
+                console.log("Grabbed Ball #");
+                console.log(ball.number+1);
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
         }
       
         function elementDrag(e) {
@@ -185,22 +191,36 @@ export class Scales extends Puzzle{
           // Check if item was released on scales
           var left = document.getElementById("left-scale");
           var right = document.getElementById("right-scale");
-          if(left.title == "True"){
-            add_to_div();
-            left.appendChild(ball.ball_img);
+            if(left.title == "True"){
+                add_to_div(left);
+                left.appendChild(ball.ball_img);
+                ball.placed = true;
             } else if(right.title == "True"){
-                add_to_div();
-            right.appendChild(ball.ball_img);
+                add_to_div(right);
+                right.appendChild(ball.ball_img);
+                ball.placed = true;
             } else {
                 console.log("Not released inside div");
             }
         }
-        function add_to_div(){
-            ball.ball_img.style.left="0%";
-            ball.ball_img.style.top="0%";
+        function add_to_div(elmnt){
+            // Get number of balls inside div already
+            var num_balls = elmnt.children.length;
+            if(num_balls>=7){
+                console.log("HEre");
+                ball.ball_img.style.left=((num_balls % 7) * 25) + 25 + "%";
+                ball.ball_img.style.top= "-40%";   
+            } else if (num_balls>=4) {
+                ball.ball_img.style.left=((num_balls % 4) * 25) + 12.5 +"%";
+                ball.ball_img.style.top= "0%";   
+            } else{
+                ball.ball_img.style.left=((num_balls % 4) * 25) + "%";
+                ball.ball_img.style.top= "40%";   
+
+            }
+            //position accordingly
+            //ball.ball_img.style.bottom= "40%";
             ball.ball_img.style.width="25%";
-            //TODO fix the reset function.
-            //TODO implment stacking, ideally through CSS, but can be specified if necessary
         }
       
     }
