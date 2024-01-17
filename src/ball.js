@@ -62,10 +62,22 @@ export class Scales extends Puzzle{
         
     }
     reset_balls(){
+        //Remove all stacked balls
+        document.getElementById("left-scale").replaceChildren();
+        document.getElementById("right-scale").replaceChildren();
+        //Remove remaing balls
+        var puzzle =  document.getElementById("puzzle-view-bg");
+        var remaining_balls = puzzle.getElementsByClassName("ball-sprite");
+        while(remaining_balls[0]){
+            puzzle.removeChild(remaining_balls[0]);
+        }
+        //Recreate all balls
         for(var i =0; i< this.balls.length; i++){
             var img = this.balls[i].get_img();
             img.style.left=this.balls[i].get_left();
             img.style.top = "70%";
+            img.style.width = "3%";
+            puzzle.appendChild(img);
         }
     }
     activate_scales(){
@@ -79,7 +91,6 @@ export class Scales extends Puzzle{
         this.left_scale.id = "left-scale";
         this.left_scale.style.left=("34%");
         this.left_scale.addEventListener("mouseenter", () => {
-            console.log(this.left_scale);
             this.left_scale.title = "True";
         });
         this.left_scale.addEventListener("mouseleave", () => {
@@ -97,7 +108,6 @@ export class Scales extends Puzzle{
            
         });
         puzzle.appendChild(this.right_scale);
-        //Set up reset button
         // Create balls
         // Random one to be heavy (pick random 0-8)
         var heavy = Math.floor(Math.random() * 9);
@@ -110,7 +120,6 @@ export class Scales extends Puzzle{
             }else{
                 ball = new Ball(1,i);
             }
-            
             var ball_img = this.create_element("ball-sprite","img");
             ball_img.src = "./images/puzzles/billiards/" + (i+1).toString() + ".png";
             var left = (27 + (5*i)).toString() + "%";
