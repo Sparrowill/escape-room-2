@@ -325,9 +325,9 @@ body{
 }
 .ball-div{
     position: absolute;
-    border: 5px solid black;
+
     width:12%;
-    top:25%;
-    height: 10%;
+    top:15%;
+    height: 20%;
     z-index:4; 
 }

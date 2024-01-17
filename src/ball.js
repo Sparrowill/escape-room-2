@@ -206,16 +206,17 @@ export class Scales extends Puzzle{
         function add_to_div(elmnt){
             // Get number of balls inside div already
             var num_balls = elmnt.children.length;
+            //Do stacking
             if(num_balls>=7){
                 console.log("HEre");
                 ball.ball_img.style.left=((num_balls % 7) * 25) + 25 + "%";
-                ball.ball_img.style.top= "-40%";   
+                ball.ball_img.style.top= "40%";   
             } else if (num_balls>=4) {
                 ball.ball_img.style.left=((num_balls % 4) * 25) + 12.5 +"%";
-                ball.ball_img.style.top= "0%";   
+                ball.ball_img.style.top= "60%";   
             } else{
                 ball.ball_img.style.left=((num_balls % 4) * 25) + "%";
-                ball.ball_img.style.top= "40%";   
+                ball.ball_img.style.top= "80%";   
 
             }
             //position accordingly
