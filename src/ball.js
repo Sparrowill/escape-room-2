@@ -42,27 +42,32 @@ export class Scales extends Puzzle{
     constructor (name, background) {
         super(name, background);
         this.balls = [];
-        this.balls_left = []
-        this.balls_right = []
-        this.heavy;
+        this.left_weight = 0;
+        this.right_weight = 0;
         this.scales_sprite;
         this.left_scale;
         this.right_scale;
     }
-    add_ball(ball, left){
-        if(left == true){
-            this.balls_left.push(ball);
-        } else{
-            this.balls_right.push(ball);
-        }
-    }
-    calculate_weight(){
 
+    calculate_weight(){
+        var left = document.getElementById("left-scale");
+        var right = document.getElementById("right-scale");
+        //TODO Calculate weight
+        // Get balls on left
+        for (const ball of left.children) {
+            this.left_weight += this.balls[ball.id-1].weight;
+        }
+        for (const ball of right.children) {
+           this.right_weight += this.balls[ball.id-1].weight
+        }
+        console.log(this.left_weight);
+        console.log(this.right_weight);
     }
     do_tip(){
         
     }
     reset_balls(){
+        this.calculate_weight();
         //Remove all stacked balls
         document.getElementById("left-scale").replaceChildren();
         document.getElementById("right-scale").replaceChildren();
@@ -82,6 +87,8 @@ export class Scales extends Puzzle{
             img.style.bottom = "";
             puzzle.appendChild(img);
         }
+        this.left_weight = 0;
+        this.right_weight = 0;
     }
     activate_scales(){
         //add scales section.
@@ -112,6 +119,8 @@ export class Scales extends Puzzle{
         });
         puzzle.appendChild(this.right_scale);
         // Create balls
+        this.left_weight = 0;
+        this.right_weight = 0;
         // Random one to be heavy (pick random 0-8)
         var heavy = Math.floor(Math.random() * 9);
         //Remove zero index
@@ -120,6 +129,7 @@ export class Scales extends Puzzle{
             var ball;
             if(i == heavy){
                 ball = new Ball(2,i);
+                console.log(ball);
             }else{
                 ball = new Ball(1,i);
             }
@@ -200,7 +210,9 @@ export class Scales extends Puzzle{
                 right.appendChild(ball.ball_img);
                 ball.placed = true;
             } else {
-                console.log("Not released inside div");
+                //Snap back to home
+                ball.ball_img.style.left=ball.get_left();
+                ball.ball_img.style.top = "70%";
             }
         }
         function add_to_div(elmnt){
@@ -208,7 +220,6 @@ export class Scales extends Puzzle{
             var num_balls = elmnt.children.length;
             //Do stacking
             if(num_balls>=7){
-                console.log("HEre");
                 ball.ball_img.style.left=((num_balls % 7) * 25) + 25 + "%";
                 ball.ball_img.style.top= "40%";   
             } else if (num_balls>=4) {
@@ -220,7 +231,6 @@ export class Scales extends Puzzle{
 
             }
             //position accordingly
-            //ball.ball_img.style.bottom= "40%";
             ball.ball_img.style.width="25%";
         }
       
