@@ -290,7 +290,6 @@ export class Puzzle {
     }
 
     one_guess(){
-        console.log("There");
         this.single_guess = true;
     }
 }

@@ -331,16 +331,39 @@ body{
     z-index:3; 
 }
 
-@keyframes right {
+@keyframes right-scales{
     50% {transform: rotate(10deg);}
 }
-@keyframes left {
+@keyframes left-scales {
     50% {transform: rotate(-10deg);}
 }
-@keyframes neither {
+@keyframes neither-scales {
     25% {transform: rotate(2deg);}
     50% {transform: rotate(-4deg);}
     75% {transform: rotate(2deg);}
+}
+
+@keyframes up-left-balls{
+    50% {transform: translate(0,-17%) rotate(10deg);}
+}
+@keyframes down-left-balls {
+    50% {transform: translate(0,17%) rotate(-10deg);}
+}
+@keyframes up-right-balls{
+    50% {transform: translate(0,-17%) rotate(-10deg);}
+}
+@keyframes down-right-balls {
+    50% {transform: translate(0,17%) rotate(10deg);}
+}
+@keyframes neither-left-balls {
+    25% {transform: translate(0,-3.4%) rotate(2deg);}
+    50% {transform: translate(0,6.8%) rotate(-4deg);}
+    75% {transform: translate(0,-3.4%) rotate(2deg);}
+}
+@keyframes neither-right-balls {
+    25% {transform: translate(0,3.4%) rotate(2deg);}
+    50% {transform: translate(0,-6.8%) rotate(-4deg);}
+    75% {transform: translate(0,3.4%) rotate(2deg);}
 }
 
 .ball-sprite{
@@ -355,9 +378,9 @@ body{
 }
 .ball-div{
     position: absolute;
-    border: 5px solid black;
     width:12%;
     top:15%;
     height: 20%;
     z-index:4; 
+    transform-origin: bottom;
 }

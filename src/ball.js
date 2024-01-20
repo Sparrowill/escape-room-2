@@ -50,12 +50,12 @@ export class Scales extends Puzzle{
         this.timeout;
     }
     one_guess(){
-        console.log("Here")
         super.one_guess();
     }
     calculate_weight(){
         if(this.timeout != undefined){
             clearTimeout(this.timeout);
+            console.log("Cleared");
         }
         var left = document.getElementById("left-scale");
         var right = document.getElementById("right-scale");
@@ -73,17 +73,27 @@ export class Scales extends Puzzle{
     }
     do_tip(){
         var scale = document.getElementById("scales-sprite-div");
+        var left = document.getElementById("left-scale");
+        var right = document.getElementById("right-scale");
         if(this.left_weight > this.right_weight)  {
-            scale.style.animation = "left 5s 1";
+            scale.style.animation = "left-scales 5s 1";
+            left.style.animation = "down-left-balls 5s 1";
+            right.style.animation = "up-right-balls 5s 1";
         }  
         else if(this.right_weight > this.left_weight) {
-            scale.style.animation = "right 5s 1";
+            scale.style.animation = "right-scales 5s 1";
+            right.style.animation = "down-right-balls  5s 1";
+            left.style.animation = "up-left-balls 5s 1";
         }
          else { // Equal
-            scale.style.animation = "neither 5s 1";
+            scale.style.animation = "neither-scales 5s 1";
+            right.style.animation = "neither-right-balls  5s 1";
+            left.style.animation = "neither-left-balls 5s 1";
         }
         this.timeout = setTimeout(() =>  {
             scale.style.animation= "";
+            right.style.animation = "";
+            left.style.animation = "";
             this.reset_balls();
             }, 5000);
     }
