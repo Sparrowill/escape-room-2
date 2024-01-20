@@ -1,3 +1,4 @@
+import { show_text } from "./interaction.js";
 import { Puzzle } from "./puzzle.js";
 
 // Code to run a puzzle that solves the 9 ball problem.
@@ -54,22 +55,26 @@ export class Scales extends Puzzle{
         super.one_guess();
     }
     calculate_weight(){
-        var puzzle =  document.getElementById("puzzle-view-bg");
-        var block_btn = this.create_element("button-block", "div");
-        puzzle.append(block_btn);
-        var left = document.getElementById("left-scale");
-        var right = document.getElementById("right-scale");
-        //TODO Calculate weight
-        // Get balls on left
-        for (const ball of left.children) {
-            this.left_weight += this.balls[ball.id-1].weight;
+        if(this.num_weighs == 0){
+            show_text("You have 0 weighs remaining. Restart the puzzle.");
+        } else {
+            var puzzle =  document.getElementById("puzzle-view-bg");
+            var block_btn = this.create_element("button-block", "div");
+            puzzle.append(block_btn);
+            var left = document.getElementById("left-scale");
+            var right = document.getElementById("right-scale");
+            //TODO Calculate weight
+            // Get balls on left
+            for (const ball of left.children) {
+                this.left_weight += this.balls[ball.id-1].weight;
+            }
+            for (const ball of right.children) {
+            this.right_weight += this.balls[ball.id-1].weight
+            }
+            console.log(this.left_weight);
+            console.log(this.right_weight);
+            this.do_tip();
         }
-        for (const ball of right.children) {
-        this.right_weight += this.balls[ball.id-1].weight
-        }
-        console.log(this.left_weight);
-        console.log(this.right_weight);
-        this.do_tip();
     }
     do_tip(){
         var scale = document.getElementById("scales-sprite-div");
@@ -95,6 +100,12 @@ export class Scales extends Puzzle{
             right.style.animation = "";
             left.style.animation = "";
             this.reset_balls();
+            this.num_weighs--;
+            if(this.num_weighs == 1){
+                show_text("You have " + this.num_weighs + " weigh remaining");
+            } else {
+                show_text("You have " + this.num_weighs + " weighs remaining");
+            }
             document.getElementById("button-block").remove();
             }, 5000);
 
@@ -193,6 +204,7 @@ export class Scales extends Puzzle{
             this.calculate_weight()
         });
         puzzle.appendChild(weigh_btn);
+        this.num_weighs = 2;
     }
     
     dragElement(ball) {

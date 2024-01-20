@@ -45,7 +45,7 @@ export function create_puzzles(){
     puzzles.push(armoury_music);
 
     billiards_ball = new Scales("billiards-ball","./images/puzzles/billiards/base.png");
-    billiards_ball.set_explanation("There appears to be a small set of scales in the cabinet, alongside 9 identical looking billiard balls. A note reads: <br><br>One of these balls is heavier than the others. Undetectable by feel alone, but these scales are accurate enough to determine the heavier ball. <br> Using the scale only <b>twice</b>, identify the heavier ball, and write its number in the box below.<br><br> The heavier ball will randomise each time you open this puzzle, and you only get one guess per opening, so there will be no cheating!")
+    billiards_ball.set_explanation("There appears to be a small set of scales in the cabinet, alongside 9 identical looking billiard balls. A note reads: <br><br>One of these balls is heavier than the others. Undetectable by feel alone, but these scales are accurate enough to determine the heavier ball. <br> Using the scale only <b>twice</b>, identify the heavier ball, and write its number in the box below.<br><br> The heavier ball will randomise each time you open this puzzle, and you only get one guess per opening, so there will be no cheating!<br><br> Drag the billiard balls onto the scales, and use the reset and weigh buttons on the side of the screen to determine which is heavier.")
     billiards_ball.set_success_text("Correct", function(){console.log("Correct");});
     billiards_ball.one_guess();
     puzzles.push(billiards_ball);
