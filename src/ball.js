@@ -48,15 +48,15 @@ export class Scales extends Puzzle{
         this.left_scale;
         this.right_scale;
         this.timeout;
+        this.num_weighs = 2;
     }
     one_guess(){
         super.one_guess();
     }
     calculate_weight(){
-        if(this.timeout != undefined){
-            clearTimeout(this.timeout);
-            console.log("Cleared");
-        }
+        var puzzle =  document.getElementById("puzzle-view-bg");
+        var block_btn = this.create_element("button-block", "div");
+        puzzle.append(block_btn);
         var left = document.getElementById("left-scale");
         var right = document.getElementById("right-scale");
         //TODO Calculate weight
@@ -65,7 +65,7 @@ export class Scales extends Puzzle{
             this.left_weight += this.balls[ball.id-1].weight;
         }
         for (const ball of right.children) {
-           this.right_weight += this.balls[ball.id-1].weight
+        this.right_weight += this.balls[ball.id-1].weight
         }
         console.log(this.left_weight);
         console.log(this.right_weight);
@@ -95,7 +95,9 @@ export class Scales extends Puzzle{
             right.style.animation = "";
             left.style.animation = "";
             this.reset_balls();
+            document.getElementById("button-block").remove();
             }, 5000);
+
     }
     reset_balls(){
         //Remove all stacked balls
@@ -187,8 +189,8 @@ export class Scales extends Puzzle{
         puzzle.appendChild(reset_btn);
         //Create weigh_btn after others 
         const weigh_btn = this.create_element("weigh-btn","btn");
-        weigh_btn.addEventListener("click", () => {
-            this.calculate_weight();
+        weigh_btn.addEventListener("click",() => { 
+            this.calculate_weight()
         });
         puzzle.appendChild(weigh_btn);
     }

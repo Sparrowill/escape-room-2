@@ -384,3 +384,11 @@ body{
     z-index:4; 
     transform-origin: bottom;
 }
+.button-block{
+    position:absolute;
+    top:10%;
+    left:0%;
+    width:5%;
+    height: 90%;
+    z-index: 5;
+}
