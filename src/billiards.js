@@ -22,7 +22,9 @@ export function create_billiards(){
     billiards_cabinet.add_nav_btn("to-entrance","55","45",move,"billiards-entrance");
     billiards_cabinet.add_interact_btn("ball-puzzle","65","34","0","34","10",show_interact,"Look closer?","Look",function (){
             if(billiards_ball.is_solved()){
-                show_text("There's nothing more to look at here");
+                show_interact("Would you like to have another go?","Yes",function(){
+                    billiards_ball.activate_scales();
+                });
             } else{
                 billiards_ball.activate_scales();
             }
