@@ -278,7 +278,6 @@ export class Puzzle {
         } else{
             show_text("That's not correct");
             if(this.single_guess){
-                console.log("Everywehre")
                 this.deactivate();
             }
             return false;

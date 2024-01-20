@@ -171,6 +171,7 @@ export class Scales extends Puzzle{
         var heavy = Math.floor(Math.random() * 9);
         //Remove zero index
         heavy++;
+        console.log(heavy);
         for(var i =0; i<9; i++){
             var ball;
             if(i == heavy){
@@ -190,7 +191,7 @@ export class Scales extends Puzzle{
             this.dragElement(ball);
             this.balls.push(ball);
         }
-        this.set_answer(heavy);
+        this.set_answer(heavy+1);
         this.activate();
         //Create reset_btn after others 
         const reset_btn = this.create_element("reset-btn","btn");

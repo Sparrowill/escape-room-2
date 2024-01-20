@@ -46,7 +46,10 @@ export function create_puzzles(){
 
     billiards_ball = new Scales("billiards-ball","./images/puzzles/billiards/base.png");
     billiards_ball.set_explanation("There appears to be a small set of scales in the cabinet, alongside 9 identical looking billiard balls. A note reads: <br><br>One of these balls is heavier than the others. Undetectable by feel alone, but these scales are accurate enough to determine the heavier ball. <br> Using the scale only <b>twice</b>, identify the heavier ball, and write its number in the box below.<br><br> The heavier ball will randomise each time you open this puzzle, and you only get one guess per opening, so there will be no cheating!<br><br> Drag the billiard balls onto the scales, and use the reset and weigh buttons on the side of the screen to determine which is heavier.")
-    billiards_ball.set_success_text("Correct", function(){console.log("Correct");});
+    billiards_ball.set_success_text("Correct! Probably worth taking the heavier ball, just in case...", function(){
+        room.add_to_inventory("billiard-ball");
+    });
+    billiards_ball.set_hints(["There is a hint for this puzzle available in one of the rooms. Have you found it yet?","With only two weighs, you have to narrow down nine balls to one. Nine doesn't divide evenly by two...","By weighing the balls in groups of three, you can identify which group the heavy ball is in pretty quickly","Now that you know which group of three the heavy ball is in, you can use a similar technique to narrow down which of the group is heavier.", "Weigh three balls on each side. The group with the heavier ball will go down. If neither side goes down, the heavier ball is in the group of three you didn't weigh. Take the group with the heavier ball and weigh two of the balls against each other. The heavier one will go down. If neither goes down, the heavier one is the one you didn't weigh."]);
     billiards_ball.one_guess();
     puzzles.push(billiards_ball);
 }
