@@ -126,7 +126,6 @@ export class Scales extends Puzzle{
             img.style.width = "3%";
             img.style.bottom = "";
             puzzle.appendChild(img);
-            console.log("Placed a ball");
         }
         this.left_weight = 0;
         this.right_weight = 0;
@@ -220,8 +219,6 @@ export class Scales extends Puzzle{
         function dragMouseDown(e) {
             //Check if ball is already inside div
             if(!ball.placed){
-                console.log("Grabbed Ball #");
-                console.log(ball.number+1);
                 e = e || window.event;
                 e.preventDefault();
                 // get the mouse cursor position at startup:
