@@ -63,7 +63,6 @@ export class Scales extends Puzzle{
             puzzle.append(block_btn);
             var left = document.getElementById("left-scale");
             var right = document.getElementById("right-scale");
-            //TODO Calculate weight
             // Get balls on left
             for (const ball of left.children) {
                 this.left_weight += this.balls[ball.id-1].weight;
@@ -71,8 +70,6 @@ export class Scales extends Puzzle{
             for (const ball of right.children) {
             this.right_weight += this.balls[ball.id-1].weight
             }
-            console.log(this.left_weight);
-            console.log(this.right_weight);
             this.do_tip();
         }
     }
@@ -99,7 +96,7 @@ export class Scales extends Puzzle{
             scale.style.animation= "";
             right.style.animation = "";
             left.style.animation = "";
-            this.reset_balls();
+            //this.reset_balls();
             this.num_weighs--;
             if(this.num_weighs == 1){
                 show_text("You have " + this.num_weighs + " weigh remaining");
@@ -114,7 +111,7 @@ export class Scales extends Puzzle{
         //Remove all stacked balls
         document.getElementById("left-scale").replaceChildren();
         document.getElementById("right-scale").replaceChildren();
-        //Remove remaing balls
+        //Remove remaining balls
         var puzzle =  document.getElementById("puzzle-view-bg");
         var remaining_balls = puzzle.getElementsByClassName("ball-sprite");
         while(remaining_balls[0]){
@@ -129,6 +126,7 @@ export class Scales extends Puzzle{
             img.style.width = "3%";
             img.style.bottom = "";
             puzzle.appendChild(img);
+            console.log("Placed a ball");
         }
         this.left_weight = 0;
         this.right_weight = 0;
@@ -165,13 +163,13 @@ export class Scales extends Puzzle{
         });
         puzzle.appendChild(this.right_scale);
         // Create balls
+        //Reset balls to 0 
+        this.balls.length = 0;
+        //Reset weights too
         this.left_weight = 0;
         this.right_weight = 0;
         // Random one to be heavy (pick random 0-8)
         var heavy = Math.floor(Math.random() * 9);
-        //Remove zero index
-        heavy++;
-        console.log(heavy);
         for(var i =0; i<9; i++){
             var ball;
             if(i == heavy){
