@@ -240,6 +240,16 @@ body{
     width:5%; /*Jank to stop button being span*/
     cursor:pointer;
 }
+.weigh-btn{
+    display:flex;
+    flex-direction: column;
+    background-image: url("./images/puzzles/scales.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 5%;
+    width:5%; /*Jank to stop button being span*/
+    cursor:pointer;
+}
 .answer-input-bg{
     position: absolute;
     bottom:5%;
@@ -305,14 +315,34 @@ body{
     margin-left: 5%;
     background-color: white;
 }
+.scales-sprite-div{
+    position:absolute;
+    left: 15%;
+    height: 70%;
+    width: 70%;
+    z-index:2;  
+}
 .scales-sprite{
     position:absolute;
+    height: 100%;
     left:50%;
     top:50%;
     transform: translate(-50%, -50%);
-    height: 100%;
     z-index:3; 
 }
+
+@keyframes right {
+    50% {transform: rotate(10deg);}
+}
+@keyframes left {
+    50% {transform: rotate(-10deg);}
+}
+@keyframes neither {
+    25% {transform: rotate(2deg);}
+    50% {transform: rotate(-4deg);}
+    75% {transform: rotate(2deg);}
+}
+
 .ball-sprite{
     position:absolute;
     left:27%;
@@ -325,7 +355,7 @@ body{
 }
 .ball-div{
     position: absolute;
-
+    border: 5px solid black;
     width:12%;
     top:15%;
     height: 20%;

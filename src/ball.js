@@ -47,9 +47,16 @@ export class Scales extends Puzzle{
         this.scales_sprite;
         this.left_scale;
         this.right_scale;
+        this.timeout;
     }
-
+    one_guess(){
+        console.log("Here")
+        super.one_guess();
+    }
     calculate_weight(){
+        if(this.timeout != undefined){
+            clearTimeout(this.timeout);
+        }
         var left = document.getElementById("left-scale");
         var right = document.getElementById("right-scale");
         //TODO Calculate weight
@@ -62,12 +69,25 @@ export class Scales extends Puzzle{
         }
         console.log(this.left_weight);
         console.log(this.right_weight);
+        this.do_tip();
     }
     do_tip(){
-        
+        var scale = document.getElementById("scales-sprite-div");
+        if(this.left_weight > this.right_weight)  {
+            scale.style.animation = "left 5s 1";
+        }  
+        else if(this.right_weight > this.left_weight) {
+            scale.style.animation = "right 5s 1";
+        }
+         else { // Equal
+            scale.style.animation = "neither 5s 1";
+        }
+        this.timeout = setTimeout(() =>  {
+            scale.style.animation= "";
+            this.reset_balls();
+            }, 5000);
     }
     reset_balls(){
-        this.calculate_weight();
         //Remove all stacked balls
         document.getElementById("left-scale").replaceChildren();
         document.getElementById("right-scale").replaceChildren();
@@ -93,13 +113,16 @@ export class Scales extends Puzzle{
     activate_scales(){
         //add scales section.
         var puzzle =  document.getElementById("puzzle-view-bg");
+        //Add scales div
+        var div = this.create_element("scales-sprite-div", "div");
         this.scales_sprite = this.create_element("scales-sprite","img");
         this.scales_sprite.src = "./images/puzzles/billiards/scales.png";
-        puzzle.appendChild(this.scales_sprite);
+        div.appendChild(this.scales_sprite);
+        puzzle.appendChild(div);
         //Create divs for balls to sit in
         this.left_scale = this.create_element("ball-div", "div");
         this.left_scale.id = "left-scale";
-        this.left_scale.style.left=("34%");
+        this.left_scale.style.left=("32%");
         this.left_scale.addEventListener("mouseenter", () => {
             this.left_scale.title = "True";
         });
@@ -152,6 +175,12 @@ export class Scales extends Puzzle{
             this.reset_balls();
         });
         puzzle.appendChild(reset_btn);
+        //Create weigh_btn after others 
+        const weigh_btn = this.create_element("weigh-btn","btn");
+        weigh_btn.addEventListener("click", () => {
+            this.calculate_weight();
+        });
+        puzzle.appendChild(weigh_btn);
     }
     
     dragElement(ball) {

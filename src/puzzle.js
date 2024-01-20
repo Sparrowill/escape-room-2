@@ -17,6 +17,7 @@ export class Puzzle {
         this.solved = false;
         this.music= false;
         this.playing = false;
+        this.single_guess = false;
     }
     create_element(style, type){
         const element = document.createElement(type);
@@ -276,12 +277,21 @@ export class Puzzle {
             return true;
         } else{
             show_text("That's not correct");
+            if(this.single_guess){
+                console.log("Everywehre")
+                this.deactivate();
+            }
             return false;
         }
     }
 
     is_solved(){
         return this.solved;
+    }
+
+    one_guess(){
+        console.log("There");
+        this.single_guess = true;
     }
 }
 
