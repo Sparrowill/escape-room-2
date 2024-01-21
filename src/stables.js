@@ -42,9 +42,9 @@ export function create_stables(){
     stables_interior.add_interact_btn("fire-alarm", "27", "10","0","3","2",show_interact,"It has a button. Press it?","Press",fire_alarm);
     stables_interior.add_interact_btn("fire-alarm", "30", "18","0","8","3",show_interact,"It has a button. Press it?","Press",fire_alarm);
     stables_interior.add_interact_btn("bench-paper", "80", "45","0","8","7",show_interact,"There's a lot of stuff pushed down the side of this bench. Do you want to look through it?","Yes",function (){
-        if(!room.inventory_contains("stables-bench-placeholder")){
-            room.add_to_inventory("stables-bench-placeholder");
-            stables_entrance.show_long_text("TEMPORARY TEXT <br> You root through the items stuffed down the side of the bench. You found a THING. This will surely be helpful in the future.. Right?")
+        if(!room.inventory_contains("stables-bench-clue")){
+            room.add_to_inventory("stables-bench-clue");
+            stables_entrance.show_long_text("Only this piece of paper seems to be of any interest. Best to take it wih you in case it helps somewhere down the line.")
         } else{
             show_text("There's nothing more to get from here.");
         }
