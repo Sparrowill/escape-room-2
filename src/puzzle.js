@@ -1,4 +1,4 @@
-import { show_text } from "./interaction.js";
+import {show_text} from "./interaction.js";
 
 export class Puzzle {
     constructor(name, background){
@@ -18,6 +18,8 @@ export class Puzzle {
         this.music= false;
         this.playing = false;
         this.single_guess = false;
+        this.no_answer = false;
+        this.btns = [];
     }
     create_element(style, type){
         const element = document.createElement(type);
@@ -39,6 +41,10 @@ export class Puzzle {
             audio.play();
             this.playing = true;
         }
+        //Add interact btns, if present
+        this.btns.forEach( (btn) => {
+            puzzle.appendChild(btn);
+        });
         // Set up exit button
         const exit_btn = this.create_element("exit-btn","btn");
         exit_btn.addEventListener("click", () => {
@@ -93,25 +99,28 @@ export class Puzzle {
             puzzle.appendChild(play_pause_btn);
 
         }
-        // Set up answer input
-        // Create background
-        const text_box = this.create_element("answer-input-bg","div");
-        // Create input text
-        const answer_input = this.create_element("answer-input","input");
-        answer_input.type = "text";
-        // Create check answer btn
-        const answer_btn = this.create_element("answer-btn","btn");
-        answer_btn.innerText ="Check";
-        answer_btn.addEventListener("click", () => {
-            if(!this.solved){
-                var answer = answer_input.value;
-                this.check_answer(answer)
-            } 
-         });
-        // Add to doc
-        text_box.appendChild(answer_input);
-        text_box.appendChild(answer_btn);
-        puzzle.appendChild(text_box);
+        if(!this.no_answer){
+            // Set up answer input
+            // Create background
+            const text_box = this.create_element("answer-input-bg","div");
+
+            // Create input text
+            const answer_input = this.create_element("answer-input","input");
+            answer_input.type = "text";
+            // Create check answer btn
+            const answer_btn = this.create_element("answer-btn","btn");
+            answer_btn.innerText ="Check";
+            answer_btn.addEventListener("click", () => {
+                if(!this.solved){
+                    var answer = answer_input.value;
+                    this.check_answer(answer)
+                } 
+            });
+            // Add to doc
+            text_box.appendChild(answer_input);
+            text_box.appendChild(answer_btn);
+            puzzle.appendChild(text_box);
+        }
         // Show explanation initially
         this.show_long_text(this.explanation);
     }
@@ -290,6 +299,34 @@ export class Puzzle {
 
     one_guess(){
         this.single_guess = true;
+    }
+    has_no_answer(){
+        this.no_answer = true;
+    }
+
+    create_btn(id,x,y,rotation,height, width){
+        const btn = document.createElement("button");
+        btn.id = id;
+        btn.classList.add("hidden-btn");
+        btn.style.left = x + "%";
+        btn.style.top = y + "%";
+        btn.style.rotate = rotation + "deg";
+        btn.style.width = width + "%";
+        btn.style.height = height + "%";
+        btn.style.zIndex = 4; 
+        this.btns.push(btn);
+        return btn
+    }
+    add_interact_btn(id,x,y,rotation,height, width,show_interact,question, text, agreeFunc){
+        const btn = this.create_btn(id,x,y,rotation,height, width);
+        btn.addEventListener("click", () => {
+            show_interact(question, text, agreeFunc)
+        });
+        this.children.push(btn)
+    }
+    change_src(src){
+        this.background = src;
+        document.getElementById("puzzle-view").src=this.background
     }
 }
 

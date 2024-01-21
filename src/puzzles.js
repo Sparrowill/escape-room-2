@@ -1,13 +1,14 @@
 import { Puzzle } from "./puzzle.js";
 import {stables_interior} from "./stables.js";
-import {move} from "./interaction.js";
+import {move, show_interact, show_text} from "./interaction.js";
 import {room} from "./renderer.js"
 import { armoury_entrance } from "./armoury.js";
 import { Scales } from "./ball.js";
+import {billiards_entrance, billiards_interior} from "./billiards.js";
 
 
 var puzzles = [];
-export var stables_plumbing, armoury_guns, armoury_music, billiards_ball;
+export var stables_plumbing, armoury_guns, armoury_music, billiards_ball, billiards_glass;
 
 export function create_puzzles(){
     stables_plumbing = new Puzzle("stables_plumbing","./images/puzzles/stables/blank_maze.png")
@@ -52,4 +53,21 @@ export function create_puzzles(){
     billiards_ball.set_hints(["There is a hint for this puzzle available in one of the rooms. Have you found it yet?","With only two weighs, you have to narrow down nine balls to one. Nine doesn't divide evenly by two...","By weighing the balls in groups of three, you can identify which group the heavy ball is in pretty quickly","Now that you know which group of three the heavy ball is in, you can use a similar technique to narrow down which of the group is heavier.", "Weigh three balls on each side. The group with the heavier ball will go down. If neither side goes down, the heavier ball is in the group of three you didn't weigh. Take the group with the heavier ball and weigh two of the balls against each other. The heavier one will go down. If neither goes down, the heavier one is the one you didn't weigh."]);
     billiards_ball.one_guess();
     puzzles.push(billiards_ball);
+
+    billiards_glass = new Puzzle("billiards-glass","./images/puzzles/billiards/glass.png");
+    billiards_glass.has_no_answer();
+    billiards_glass.set_explanation("No explanation for this one. If you've found all the pieces it should be easy!");
+    billiards_glass.add_interact_btn("glass-break","63","32","0","4.5","2.5",show_interact,"Interact?","Yes",function (){
+        if(room.inventory_contains("billiard-ball")){
+            show_text("You throw the ball at the glass, breaking the pane.");
+            // Change puzzle image source
+            billiards_glass.change_src("./images/puzzles/billiards/smashed-glass.png")
+            billiards_interior.change_src("./images/backgrounds/billiards/interior-smashed.png");
+            billiards_entrance.change_src("./images/backgrounds/billiards/entrance-smashed.png")
+            room.inventory
+        } else{
+            show_text("Yep, that's definitely a glass pane.");
+        }
+    });
+    puzzles.push(billiards_glass);
 }

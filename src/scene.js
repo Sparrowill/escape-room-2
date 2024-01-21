@@ -137,5 +137,12 @@ export class Scene {
         long_text.remove();
         this.long_text_on = false;
     }
+
+    change_src(src){
+        this.background = src;
+        if(this.active){
+            document.getElementById("room-view").src=this.background
+        }
+    }
 }
 
