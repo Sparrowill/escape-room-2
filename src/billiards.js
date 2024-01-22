@@ -69,5 +69,5 @@ export function create_billiards(){
     })
     window.scenes.push(billiards_cabinet);
 
-    billiards_entrance.activate();
+    // billiards_entrance.activate();
 }
