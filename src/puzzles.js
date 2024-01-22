@@ -57,7 +57,7 @@ export function create_puzzles(){
     billiards_glass = new Puzzle("billiards-glass","./images/puzzles/billiards/glass.png");
     billiards_glass.has_no_answer();
     billiards_glass.set_explanation("No explanation for this one. If you've found all the pieces it should be easy!");
-    billiards_glass.add_interact_btn("glass-break","63","32","0","4.5","3.5",show_interact,"Interact?","Yes",function (){
+    billiards_glass.add_interact_btn("glass-break","63.5","32","0","4.5","3.5",show_interact,"Interact?","Yes",function (){
         if(room.inventory_contains("billiard-ball")){
             billiards_glass.show_long_text("You throw the ball at the glass, cracking the pane. <br> Sunlight refracts through the cracked glass, illuminating the wall opposite.");
             billiards_glass.solved = true;
