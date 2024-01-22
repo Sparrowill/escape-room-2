@@ -1,6 +1,6 @@
 import {Scene} from "./scene.js"
 import {move, show_interact,show_text} from "./interaction.js"
-import { billiards_ball, billiards_glass } from "./puzzles.js";
+import { billiards_ball, billiards_glass, billiards_latin } from "./puzzles.js";
 
 export var billiards_interior, billiards_entrance;
 
@@ -9,16 +9,37 @@ export function create_billiards(){
     billiards_entrance.add_nav_btn("to-armoury","35","45",move,"armoury-interior");
     billiards_entrance.add_nav_btn("to-interior","20","45",move,"billiards-interior");
     billiards_entrance.add_nav_btn("to-cabinet","85","50",move,"billiards-cabinet");
+    billiards_entrance.add_interact_btn("glass-puzzle","60","10","0","40","27",show_interact,"Look closer?","Look",function (){
+        if(billiards_glass.is_solved()){
+            show_text("You've already done enough damage...");
+        } else{
+            billiards_glass.activate();
+        }
+    });
+    billiards_entrance.add_interact_btn("latin-puzzle","0","10","0","34","9",show_interact,"Look closer?","Look",function() {
+        if(billiards_latin.is_solved()){
+            show_text("There's nothing more to see here");
+        } else{
+            billiards_latin.activate();
+        }
+    });
     window.scenes.push(billiards_entrance);
 
     billiards_interior = new Scene("billiards-interior", "./images/backgrounds/billiards/interior.png");
     billiards_interior.add_nav_btn("to-entrance","65","45",move,"billiards-entrance");
     billiards_interior.add_nav_btn("to-cabinet","30","45",move,"billiards-cabinet");
-    billiards_interior.add_interact_btn("glass-puzzle","65","34","0","34","10",show_interact,"Look closer?","Look",function (){
+    billiards_interior.add_interact_btn("glass-puzzle","0","10","0","40","27",show_interact,"Look closer?","Look",function (){
         if(billiards_glass.is_solved()){
             show_text("You've already done enough damage...");
         } else{
             billiards_glass.activate();
+        }
+    });
+    billiards_interior.add_interact_btn("latin-puzzle","78","12","0","38","22",show_interact,"Look closer?","Look",function() {
+        if(billiards_latin.is_solved()){
+            show_text("There's nothing more to see here");
+        } else{
+            billiards_latin.activate();
         }
     });
     window.scenes.push(billiards_interior);
@@ -36,5 +57,5 @@ export function create_billiards(){
     })
     window.scenes.push(billiards_cabinet);
 
-    billiards_interior.activate();
+    billiards_entrance.activate();
 }

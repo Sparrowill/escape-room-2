@@ -326,7 +326,9 @@ export class Puzzle {
     }
     change_src(src){
         this.background = src;
-        document.getElementById("puzzle-view").src=this.background
+        if(this.active){
+         document.getElementById("puzzle-view").src=this.background;
+        }
     }
 }
 

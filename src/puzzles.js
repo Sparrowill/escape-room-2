@@ -8,7 +8,7 @@ import {billiards_entrance, billiards_interior} from "./billiards.js";
 
 
 var puzzles = [];
-export var stables_plumbing, armoury_guns, armoury_music, billiards_ball, billiards_glass;
+export var stables_plumbing, armoury_guns, armoury_music, billiards_ball, billiards_glass, billiards_latin;
 
 export function create_puzzles(){
     stables_plumbing = new Puzzle("stables_plumbing","./images/puzzles/stables/blank_maze.png")
@@ -58,16 +58,32 @@ export function create_puzzles(){
     billiards_glass.has_no_answer();
     billiards_glass.set_explanation("No explanation for this one. If you've found all the pieces it should be easy!");
     billiards_glass.add_interact_btn("glass-break","63","32","0","4.5","2.5",show_interact,"Interact?","Yes",function (){
-        if(room.inventory_contains("billiard-ball")){
-            show_text("You throw the ball at the glass, breaking the pane.");
+        if(room.inventory_contains("billiard-ball") && !billiards_glass.is_solved()){
+            billiards_glass.show_long_text("You throw the ball at the glass, breaking the pane. <br> Sunlight streams through the cracked glass, illuminating the wall opposite.");
             // Change puzzle image source
             billiards_glass.change_src("./images/puzzles/billiards/smashed-glass.png")
             billiards_interior.change_src("./images/backgrounds/billiards/interior-smashed.png");
             billiards_entrance.change_src("./images/backgrounds/billiards/entrance-smashed.png")
-            room.inventory
-        } else{
+            billiards_latin.change_src("./images/puzzles/billiards/latin-lit.png")
+            billiards_glass.solved = true;
+        } else if (!billiards_glass.is_solved()){
             show_text("Yep, that's definitely a glass pane.");
+        } else {
+            show_text("Broken glass is sharp, don't poke that.");
         }
     });
     puzzles.push(billiards_glass);
+
+    billiards_latin = new Puzzle("billiards-latin","./images/puzzles/billiards/latin.png")
+    billiards_latin.set_explanation("If you've done everything else correctly, the answer should be apparent. If you're having to guess, you haven't done everything yet.");
+    billiards_latin.set_success_text("Correct! Temptation. <br>(You try finding a longer word made up of those letters in that order!)<br><br> As you press each letter in turn, they recess into the wall. Behind you, a previously unseen doorway unlatches to reveal a secret passageway into the next room.",function () {
+       billiards_interior.add_nav_btn("to-smoking","47","47",move,"smoking-entrance");
+        // Add new nav button  (reload scene)
+        if(billiards_interior.is_active()){
+            billiards_interior.activate();
+        }
+    });
+    billiards_latin.set_answer("TEMPTATION");
+    billiards_latin.set_hints(["1","2","3"]);
+    puzzles.push(billiards_latin);
 }
