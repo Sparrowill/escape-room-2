@@ -44,7 +44,7 @@ export function create_stables(){
     stables_interior.add_interact_btn("bench-paper", "80", "45","0","8","7",show_interact,"There's a lot of stuff pushed down the side of this bench. Do you want to look through it?","Yes",function (){
         if(!room.inventory_contains("stables-bench-clue")){
             room.add_to_inventory("stables-bench-clue");
-            stables_entrance.show_long_text("Only this piece of paper seems to be of any interest. Best to take it wih you in case it helps somewhere down the line.")
+            stables_entrance.show_long_text("Only this piece of paper seems to be of any interest. Best to take it with you in case it helps somewhere down the line.")
         } else{
             show_text("There's nothing more to get from here.");
         }
@@ -70,5 +70,5 @@ export function create_stables(){
     window.scenes.push(stables_mirza);
 
     // Load first scene. Starts the room.
-   // stables_entrance.activate();
+   //stables_entrance.activate();
 }
