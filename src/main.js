@@ -1,38 +1,39 @@
 // main.js
-
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
 
+try{
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const createWindow = () => {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    fullscreen: true,
-    webPreferences: {
-      // sandbox: true,
-      preload: path.join(__dirname, 'preload.js')
-    },
-  });
-  mainWindow.setIcon(path.join(__dirname, '/icons/icon.png'))
-  mainWindow.maximize()
-  mainWindow.removeMenu()
-  // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, '/room.html'));
-
+  const createWindow = () => {
+    // Create the browser window.
+    const mainWindow = new BrowserWindow({
+      width: 800,
+      height: 600,
+      //fullscreen: true,
+      webPreferences: {
+        // sandbox: true,
+        preload: path.join(__dirname, 'preload.js')
+      },
+    });
+    mainWindow.setIcon(path.join(__dirname, '/icons/icon.png'))
+    mainWindow.maximize()
+    mainWindow.removeMenu()
+    // and load the index.html of the app.
+    mainWindow.loadFile(path.join(__dirname, 'room.html'));
+   
   // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
-}
+    mainWindow.webContents.openDevTools()
+  }
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
+var newWindow = null
 app.on('ready', createWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -52,3 +53,7 @@ app.on('activate', () => {
     createWindow();
   }
 });
+}
+catch(error){
+
+}
