@@ -15,7 +15,7 @@ if (require('electron-squirrel-startup')) {
     const mainWindow = new BrowserWindow({
       width: 800,
       height: 600,
-      //fullscreen: true,
+      fullscreen: true,
       webPreferences: {
         // sandbox: true,
         preload: path.join(__dirname, 'preload.js')

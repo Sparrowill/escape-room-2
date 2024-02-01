@@ -110,5 +110,5 @@ export function create_billiards(){
 
     window.scenes.push(billiards_cabinet);
     
-    billiards_cabinet.activate();
+    // billiards_cabinet.activate();
 }
