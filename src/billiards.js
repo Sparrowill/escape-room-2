@@ -54,6 +54,26 @@ export function create_billiards(){
             billiards_latin.activate();
         }
     });
+    billiards_interior.add_interact_btn("cabinet","51","39","0","11","11",show_interact,"A cabinet. Open it?","Yes", function(){
+        /*
+        if(room.inventory_contains("a key of some sort"")){
+            show_text("There's nothing more in this cabinet");
+        }
+        else if(smoking.puzzle.is_solved()){
+            show_text("The cabinet opens, and inside you find a THING");
+            room.add_to_inventory("a key of some sort");
+        } else{*/
+            show_text("It's locked");
+        /*}
+        */
+    });
+    billiards_interior.add_feedback_btn("pool1","17","58","164","30","27",show_text,"Nothing here. Coding a billiards table puzzle was too much effort for me");
+    billiards_interior.add_feedback_btn("pool2","41","52","0","30","13",show_text,"Nothing here. Coding a billiards table puzzle was too much effort for me");
+    billiards_interior.add_feedback_btn("sofa","69","58","0","42","31",show_text,"Very old sofa. Worth more than most cars. Probably best to stand up for a little while longer...");
+    billiards_interior.add_feedback_btn("chair","0","55","0","30","10",show_text,"What is your obsession with chairs? Please! Just stop trying to sit down");
+    billiards_interior.add_feedback_btn("light","28","30","0","10","21",show_text,"Hiding things in lights is more of a prison escape thing...");
+    billiards_interior.add_feedback_btn("painting","50","13","0","11","5",show_text,"That would be a cool place to hide something, a safe behind it maybe? Alas, no.");
+    billiards_interior.add_feedback_btn("fireplace","65","20","0","10","7",show_text,"Just a fancy crest, nothing more.");
     window.scenes.push(billiards_interior);
     
     var billiards_cabinet = new Scene("billiards-cabinet", "./images/backgrounds/billiards/cabinet.png");
@@ -69,5 +89,5 @@ export function create_billiards(){
     })
     window.scenes.push(billiards_cabinet);
 
-    // billiards_entrance.activate();
+     billiards_interior.activate();
 }
