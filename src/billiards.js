@@ -2,7 +2,7 @@ import {Scene} from "./scene.js"
 import {move, show_interact,show_text} from "./interaction.js"
 import { billiards_ball, billiards_glass, billiards_latin,billiards_latin_lit } from "./puzzles.js";
 
-export var billiards_interior, billiards_entrance;
+export var billiards_interior, billiards_entrance, billiards_cabinet;
 
 export function create_billiards(){
     billiards_entrance = new Scene("billiards-entrance", "./images/backgrounds/billiards/entrance.png");
@@ -76,9 +76,9 @@ export function create_billiards(){
     billiards_interior.add_feedback_btn("fireplace","65","20","0","10","7",show_text,"Just a fancy crest, nothing more.");
     window.scenes.push(billiards_interior);
     
-    var billiards_cabinet = new Scene("billiards-cabinet", "./images/backgrounds/billiards/cabinet.png");
+    billiards_cabinet = new Scene("billiards-cabinet", "./images/backgrounds/billiards/cabinet.png");
     billiards_cabinet.add_nav_btn("to-entrance","55","45",move,"billiards-entrance");
-    billiards_cabinet.add_interact_btn("ball-puzzle","65","34","0","34","10",show_interact,"Look closer?","Look",function (){
+    billiards_cabinet.add_interact_btn("ball-puzzle","65","34","0","33","10",show_interact,"Look closer?","Look",function (){
             if(billiards_ball.is_solved()){
                 show_interact("Would you like to have another go?","Yes",function(){
                     billiards_ball.activate_scales();
@@ -86,8 +86,29 @@ export function create_billiards(){
             } else{
                 billiards_ball.activate_scales();
             }
-    })
-    window.scenes.push(billiards_cabinet);
+    });
+    billiards_cabinet.add_interact_btn("cabinet","34","39","0","30","17",show_interact,"A cabinet. Open it?","Yes", function(){
+        /*
+        if(room.inventory_contains("a key of some sort"")){
+            show_text("There's nothing more in this cabinet");
+        }
+        else if(smoking.puzzle.is_solved()){
+            show_text("The cabinet opens, and inside you find a THING");
+            room.add_to_inventory("a key of some sort");
+        } else{*/
+            show_text("It's locked");
+        /*}
+        */
+    });
+    billiards_cabinet.add_feedback_btn("fireplace","50","13","0","20","12",show_text,"Just a fancy crest, nothing more.");
+    billiards_cabinet.add_feedback_btn("vases","64","12","0","15","16",show_text,"Those are in glass cases. That means they're super duper valuabele! No touching");
+    billiards_cabinet.add_feedback_btn("pool","50","98","55","37","50",show_text,"Nothing here. Coding a billiards table puzzle was too much effort for me");
+    billiards_cabinet.add_feedback_btn("pool2","66","74","14","32","40",show_text,"Nothing here. Coding a billiards table puzzle was too much effort for me");
+    billiards_cabinet.add_feedback_btn("light","78","38","0","12","22",show_text,"Hiding things in lights is more of a prison escape thing...");
+    billiards_cabinet.add_feedback_btn("sofa","76","57","14","17","30",show_text,"Very old sofa. Worth more than most cars. Probably best to stand up for a little while longer...");
 
-     billiards_interior.activate();
+
+    window.scenes.push(billiards_cabinet);
+    
+    billiards_cabinet.activate();
 }

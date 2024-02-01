@@ -4,7 +4,7 @@ import {move, show_interact, show_text} from "./interaction.js";
 import {room} from "./renderer.js"
 import { armoury_entrance } from "./armoury.js";
 import { Scales } from "./ball.js";
-import {billiards_entrance, billiards_interior} from "./billiards.js";
+import {billiards_entrance, billiards_interior, billiards_cabinet} from "./billiards.js";
 
 
 var puzzles = [];
@@ -59,7 +59,7 @@ export function create_puzzles(){
     billiards_glass.set_explanation("No explanation for this one. If you've found all the pieces it should be easy!");
     billiards_glass.add_interact_btn("glass-break","63.5","32","0","4.5","3.5",show_interact,"Interact?","Yes",function (){
         if(room.inventory_contains("billiard-ball")){
-            billiards_glass.show_long_text("You throw the ball at the glass, cracking the pane. <br> Sunlight refracts through the cracked glass, illuminating the wall opposite.");
+            billiards_glass.show_long_text("You throw the billiard ball at the glass, cracking the pane. <br> Sunlight refracts through the cracked glass, illuminating the wall opposite.");
             billiards_glass.solved = true;
         } else {
             show_text("Yep, that's definitely a glass pane.");
@@ -79,6 +79,8 @@ export function create_puzzles(){
     billiards_latin_lit.set_explanation("No explanation here, this should be obvious if you've got all the pieces in place");
     billiards_latin_lit.set_success_text("Correct! Temptation. <br>(You try finding a longer word made up of those letters in that order!)<br><br> As you press each letter in turn, they recess into the wall. Behind you, a previously unseen doorway unlatches to reveal a secret passageway into the next room.",function () {
        billiards_interior.add_nav_btn("to-smoking","47","47",move,"smoking-entrance");
+       billiards_cabinet.add_nav_btn("to-smoking","20","60",move,"smoking-entrance");
+
         // Add new nav button  (reload scene)
         if(billiards_interior.is_active()){
             billiards_interior.activate();
