@@ -17,7 +17,7 @@ export function create_billiards(){
         }
     });
     billiards_entrance.add_interact_btn("latin-puzzle","0","10","0","34","9",show_interact,"Look closer?","Look",function() {
-        if(billiards_latin.is_solved()){
+        if(billiards_latin_lit.is_solved()){
             show_text("There's nothing more to see here");
         } else if(billiards_glass.is_solved()){
             billiards_latin_lit.activate();
@@ -46,7 +46,7 @@ export function create_billiards(){
         }
     });
     billiards_interior.add_interact_btn("latin-puzzle","78","12","0","38","22",show_interact,"Look closer?","Look",function() {
-        if(billiards_latin.is_solved()){
+        if(billiards_latin_lit.is_solved()){
             show_text("There's nothing more to see here");
         } else if(billiards_glass.is_solved()){
             billiards_latin_lit.activate();
@@ -110,5 +110,5 @@ export function create_billiards(){
 
     window.scenes.push(billiards_cabinet);
     
-    // billiards_cabinet.activate();
+    billiards_cabinet.activate();
 }

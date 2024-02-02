@@ -1,6 +1,7 @@
 import { create_stables } from "./stables.js";
 import { create_armoury } from "./armoury.js";
 import { create_billiards } from "./billiards.js";
+import { create_smoking } from "./smoking.js";
 
 // Global array to store all scenes for looping through.
 window.scenes = [];
@@ -16,6 +17,7 @@ export function create_rooms(){
     create_stables();
     create_armoury();
     create_billiards()
+    create_smoking();
 }
 
 //Function to move from one scene to another

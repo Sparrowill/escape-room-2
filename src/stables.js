@@ -70,5 +70,5 @@ export function create_stables(){
     window.scenes.push(stables_mirza);
 
     // Load first scene. Starts the room.
-   stables_entrance.activate();
+//    stables_entrance.activate();
 }
