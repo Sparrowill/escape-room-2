@@ -24,12 +24,18 @@ class Queen {
 }
 
 class Square{
-    constructor (id,div){
+    constructor (id,div,x,y){
         this.id = id;;  
         this.div = div;
+        this.x = x;
+        this.y = y;
+        this.full
     }
     get_div(){
         return this.div;
+    }
+    is_full(){
+        return this.full;
     }
 }
 
@@ -46,8 +52,9 @@ export class Board extends Puzzle{
         var puzzle =  document.getElementById("puzzle-view-bg");
         var remaining_queens = puzzle.getElementsByClassName("queen-sprite");
         while(remaining_queens[0]){
-            puzzle.removeChild(remaining_queens[0])
+            remaining_queens[0].remove()
         }
+        this.queens = []
         this.create_queens(puzzle);
     }
 
@@ -75,29 +82,28 @@ export class Board extends Puzzle{
         //Create 64 div for the squares
         var div_width = 4.3;
         var div_height = 8;
+        var id = 0;
         for(var i=0; i<8; i++){ //rows
             for(var j = 0; j<8; j++){ //columns
+                id++;
                 var div = this.create_element("queen-div","div");
                 div.style.width = div_width + "%";
                 div.style.height = div_height + "%";
-                div.style.left = 33 + (div_width*j) + "%";
-                div.style.top = 19 + (div_height*i) + "%";
+                var x = 33 + (div_width*j) + "%";
+                var y = 19 + (div_height*i) + "%";
+                div.style.left = x
+                div.style.top = y
                 var num = Math.floor(Math.random() * 4) + 1;
                 if((i%2 == 0 && j%2 ==1)||(i%2==1 && j%2 ==0)){
                     div.style.backgroundImage =  "url('./images/puzzles/smoking/black" + num + ".png')"
                 } else{
                     div.style.backgroundImage =  "url('./images/puzzles/smoking/white" + num + ".png')"
                 }
-                var square = new Square((i+1)*(j+1),div)
+                var square = new Square(id,div,x,y)
                 this.squares.push(square);
                 puzzle.appendChild(div);
             }
         }
-
-
-
-
-
         this.activate();
 
         const reset_btn = this.create_element("reset-btn","btn");
@@ -109,6 +115,7 @@ export class Board extends Puzzle{
 
     dragElement(queen) {
         var elmnt = queen.get_img();
+        var squares = this.squares;
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         if (document.getElementById(elmnt.id + "header")) {
           // if present, the header is where you move the DIV from:
@@ -144,10 +151,39 @@ export class Board extends Puzzle{
         }
       
         function closeDragElement() {
+
           // stop moving when mouse button is released:
           document.onmouseup = null;
           document.onmousemove = null;
-          
+
+          // Check if queen was released over div
+          var puzzle =  document.getElementById("puzzle-view-bg");
+          const queen_rect = elmnt.getBoundingClientRect();
+          var dropped_square = null
+          for (var i =0; i< squares.length; i++){
+            var square = squares[i];
+             const square_rect = square.get_div().getBoundingClientRect();
+              if(queen_rect.right > square_rect.left){
+                  if(square_rect.right > queen_rect.left){
+                    if(queen_rect.bottom < square_rect.bottom){
+                        if(square_rect.top < queen_rect.top){
+                            dropped_square = square;
+                            break;
+                        }
+                    }
+                  }
+              }
+          }
+          if(dropped_square != null){
+            if(!(dropped_square.is_full()))
+            console.log("Dropped into square number " + dropped_square.id);
+            elmnt.style.position = "static"
+            elmnt.style.width = "50%"
+            dropped_square.get_div().appendChild(elmnt);
+            dropped_square.full= true;
+          }
+
+          //If so, snap into it and mark it as full
         }
     }
 }
