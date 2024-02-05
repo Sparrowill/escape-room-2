@@ -6,6 +6,7 @@ export var billiards_interior, billiards_entrance, billiards_cabinet;
 
 export function create_billiards(){
     billiards_entrance = new Scene("billiards-entrance", "./images/backgrounds/billiards/entrance.png");
+    
     billiards_entrance.add_nav_btn("to-armoury","35","45",move,"armoury-interior");
     billiards_entrance.add_nav_btn("to-cabinet","88","45",move,"billiards-cabinet");
     billiards_entrance.add_nav_btn("to-interior","20","45",move,"billiards-interior");
@@ -36,6 +37,7 @@ export function create_billiards(){
     window.scenes.push(billiards_entrance);
 
     billiards_interior = new Scene("billiards-interior", "./images/backgrounds/billiards/interior.png");
+    
     billiards_interior.add_nav_btn("to-entrance","65","45",move,"billiards-entrance");
     billiards_interior.add_nav_btn("to-cabinet","30","45",move,"billiards-cabinet");
     billiards_interior.add_interact_btn("glass-puzzle","0","10","0","40","27",show_interact,"Look closer?","Look",function (){
@@ -77,6 +79,7 @@ export function create_billiards(){
     window.scenes.push(billiards_interior);
     
     billiards_cabinet = new Scene("billiards-cabinet", "./images/backgrounds/billiards/cabinet.png");
+    
     billiards_cabinet.add_nav_btn("to-entrance","55","45",move,"billiards-entrance");
     billiards_cabinet.add_interact_btn("ball-puzzle","65","34","0","33","10",show_interact,"Look closer?","Look",function (){
             if(billiards_ball.is_solved()){
@@ -107,8 +110,6 @@ export function create_billiards(){
     billiards_cabinet.add_feedback_btn("light","78","38","0","12","22",show_text,"Hiding things in lights is more of a prison escape thing...");
     billiards_cabinet.add_feedback_btn("sofa","76","57","14","17","30",show_text,"Very old sofa. Worth more than most cars. Probably best to stand up for a little while longer...");
 
-
     window.scenes.push(billiards_cabinet);
     
-    billiards_cabinet.activate();
 }

@@ -137,8 +137,8 @@ body{
     rotate: 0deg;
     top: 50%;
     left: 50%;
-    /* border: 2px solid black ; */
-    border: 2px solid transparent;
+    border: 2px solid black ;
+    /* border: 2px solid transparent; */
     
 }
 .long-text-bg{
@@ -392,4 +392,13 @@ body{
     width:100%;
     height: 90%;
     z-index: 5;
+}
+
+.queen-sprite{
+    position:absolute;
+    width: 2.3%;
+    height: auto;
+    /* padding-left: 4px;
+    padding-right: 4px; */
+    z-index:3; 
 }
