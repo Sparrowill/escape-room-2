@@ -91,7 +91,7 @@ export function create_puzzles(){
     billiards_latin_lit.set_hints(["If you've done everything else correctly, the answer should be apparent. If you're having to guess, you haven't done everything yet.","If you haven't solved the billiards ball puzzle yet, you should","If you haven't solved the window puzzle yet, you should.","All the right letters should now be illuminated","The answer is TEMPTATION"]);
     puzzles.push(billiards_latin_lit);
 
-    smoking_chess = new Board("smoking-chess","./images/puzzles/smoking/chess-board.png")
+    smoking_chess = new Board("smoking-chess","")
     smoking_chess.set_explanation("There is a worn wooden chessboard in the cabinet, but instead of a full set of pieces there are only 8 queens. A note reads: <br><br> If you can place these 8 queens on the board, such that no piece threatens another, I will reveal a secret.<br><br>Drag and drop the queens onto the chess board. Once a solution is correct, the puzzle will complete automatically.");
     smoking_chess.has_no_answer();
     puzzles.push(smoking_chess);

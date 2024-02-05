@@ -61,7 +61,31 @@ export class Board extends Puzzle{
     activate_board(){
         var puzzle =  document.getElementById("puzzle-view-bg");
         this.create_queens(puzzle);
-        
+
+        //Create 64 div for the queens
+        for(var i=0; i<8; i++){ //rows
+            for(var j = 0; j<8; j++){ //columns
+                var div = this.create_element("queen-div","div");
+                var width = 4.3;
+                var height = 8;
+                div.style.left =33 + (width*j) + "%";
+                div.style.top = 19 + (height*i) + "%";
+                div.style.width = width + "%";
+                div.style.height = height + "%";
+                var num = Math.floor(Math.random() * 4) + 1;
+                if((i%2 == 0 && j%2 ==1)||(i%2==1 && j%2 ==0)){
+                    div.style.backgroundImage =  "url('./images/puzzles/smoking/black" + num + ".png')"
+                } else{
+                    div.style.backgroundImage =  "url('./images/puzzles/smoking/white" + num + ".png')"
+                }
+                puzzle.appendChild(div);
+            }
+        }
+
+
+
+
+
         this.activate();
 
         const reset_btn = this.create_element("reset-btn","btn");

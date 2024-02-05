@@ -400,5 +400,13 @@ body{
     height: auto;
     /* padding-left: 4px;
     padding-right: 4px; */
-    z-index:3; 
+    z-index:5; 
+}
+
+.queen-div{
+    position: absolute;
+
+    z-index:4; 
+    border: 2px solid black ;
+
 }
