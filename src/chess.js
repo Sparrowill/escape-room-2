@@ -23,6 +23,15 @@ class Queen {
     }
 }
 
+class Square{
+    constructor (id,div){
+        this.id = id;;  
+        this.div = div;
+    }
+    get_div(){
+        return this.div;
+    }
+}
 
 
 
@@ -30,6 +39,7 @@ export class Board extends Puzzle{
     constructor(name, background) {
         super(name,background);
         this.queens = [];
+        this.squares = [];
     }
 
     reset_queens(){
@@ -62,22 +72,24 @@ export class Board extends Puzzle{
         var puzzle =  document.getElementById("puzzle-view-bg");
         this.create_queens(puzzle);
 
-        //Create 64 div for the queens
+        //Create 64 div for the squares
+        var div_width = 4.3;
+        var div_height = 8;
         for(var i=0; i<8; i++){ //rows
             for(var j = 0; j<8; j++){ //columns
                 var div = this.create_element("queen-div","div");
-                var width = 4.3;
-                var height = 8;
-                div.style.left =33 + (width*j) + "%";
-                div.style.top = 19 + (height*i) + "%";
-                div.style.width = width + "%";
-                div.style.height = height + "%";
+                div.style.width = div_width + "%";
+                div.style.height = div_height + "%";
+                div.style.left = 33 + (div_width*j) + "%";
+                div.style.top = 19 + (div_height*i) + "%";
                 var num = Math.floor(Math.random() * 4) + 1;
                 if((i%2 == 0 && j%2 ==1)||(i%2==1 && j%2 ==0)){
                     div.style.backgroundImage =  "url('./images/puzzles/smoking/black" + num + ".png')"
                 } else{
                     div.style.backgroundImage =  "url('./images/puzzles/smoking/white" + num + ".png')"
                 }
+                var square = new Square((i+1)*(j+1),div)
+                this.squares.push(square);
                 puzzle.appendChild(div);
             }
         }
