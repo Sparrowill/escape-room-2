@@ -123,7 +123,9 @@ export class Board extends Puzzle{
             this.update_board();
         });
         puzzle.addEventListener("mouseup", () => {
-            this.update_board();
+            setTimeout(() =>{ //allow the other mouse up event to fire and update values
+                this.update_board();
+            },10);
         });
     }
 
@@ -229,6 +231,10 @@ export class Board extends Puzzle{
             queen.y = i;
             queen.current_square = dropped_square.id;
             dropped_square.get_div().classList.add("queen-div-red");
+
+
+
+
           } else{
             //snap home
             queen.get_img().style.top = "90%"
