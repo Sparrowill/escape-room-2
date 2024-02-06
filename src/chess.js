@@ -51,14 +51,16 @@ export class Board extends Puzzle{
     }
 
     reset_queens(){
-        var puzzle =  document.getElementById("puzzle-view-bg");
-        var remaining_queens = puzzle.getElementsByClassName("queen-sprite");
-        while(remaining_queens[0]){
-            remaining_queens[0].remove()
+        if(!this.solved){
+            var puzzle =  document.getElementById("puzzle-view-bg");
+            var remaining_queens = puzzle.getElementsByClassName("queen-sprite");
+            while(remaining_queens[0]){
+                remaining_queens[0].remove()
+            }
+            this.queens = []
+            this.create_queens(puzzle);
+            this.update_board();
         }
-        this.queens = []
-        this.create_queens(puzzle);
-        this.update_board();
     }
 
     create_queens(puzzle){
@@ -111,6 +113,7 @@ export class Board extends Puzzle{
                 puzzle.appendChild(div);
             }
         }
+        this.set_answer("ANSWER");
         this.activate();
 
         const reset_btn = this.create_element("reset-btn","btn");
@@ -119,42 +122,67 @@ export class Board extends Puzzle{
         });
         puzzle.appendChild(reset_btn);
         //Add event listener to update squares whenever a queen is pike dup or dropped
-        puzzle.addEventListener("mousedown", () => {
-            this.update_board();
-        });
-        puzzle.addEventListener("mouseup", () => {
-            setTimeout(() =>{ //allow the other mouse up event to fire and update values
-                this.update_board();
-            },10);
-        });
+        puzzle.addEventListener("mousedown", () =>{this.delayed_update_board()});
+        puzzle.addEventListener("mouseup", () =>{this.delayed_update_board()});
     }
 
+    delayed_update_board(){
+        setTimeout(() => {
+            this.update_board();
+        }, 10);
+    }
     update_board(){
-        for(var i in this.squares){
-            var square = this.squares[i];
-            square.get_div().classList.remove("queen-div-red");
-            square.full= false;
-        }
-        var filled_squares = [];
-        for (var i in this.queens){
-            var queen = this.queens[i];
-            console.log(queen.current_square)
-            //If queen is placed on the board
-            if(queen.current_square != null){
-                //Check all squares for threat
-                for(var j in this.squares){
-                    var square = this.squares[j];
-                    //Check rook lines
-                    if((square.x == queen.x)||(square.y == queen.y)){
-                        square.get_div().classList.add("queen-div-red");
-                        square.full = true;
-                        filled_squares.push(square.id);
+            for(var i in this.squares){
+                var square = this.squares[i];
+                square.get_div().classList.remove("queen-div-red");
+                square.full= false;
+            }
+            var solved = true;
+            for (var i in this.queens){
+                var queen = this.queens[i];
+                //If queen is placed on the board
+                if(queen.current_square != null){
+                    //Check all squares for threat
+                    for(var j in this.squares){
+                        var square = this.squares[j];
+                        //Check rook lines
+                        if((square.x == queen.x)||(square.y == queen.y)){
+                            square.get_div().classList.add("queen-div-red");
+                            square.full = true;
+                        }
+                        //Check diagonals
+                        for(var i =-7; i<8; i++){
+                            var check_x = square.x+i;
+                            var check_y = square.y+i
+                            if(check_x == queen.x && check_y == queen.y){
+                                square.get_div().classList.add("queen-div-red");
+                                square.full = true;
+                            }
+                            var check_x = square.x+i;
+                            var check_y = square.y-i
+                            if(check_x == queen.x && check_y == queen.y){
+                                square.get_div().classList.add("queen-div-red");
+                                square.full = true;
+                            }
+                        }
+    
                     }
+                } else{
+                    //Did not solve.
+                    solved = false;
                 }
             }
+            if(solved){
+                var puzzle =  document.getElementById("puzzle-view-bg");
+                puzzle.addEventListener("mousedown", function(e){
+                    e.stopPropagation();
+                },true);
+                puzzle.addEventListener("mouseup", function(e){
+                    e.stopPropagation();
+                },true);
+                super.check_answer("ANSWER");
+            }
         }
-    }
-
 
     dragElement(queen) {
         var elmnt = queen.get_img();
@@ -230,10 +258,6 @@ export class Board extends Puzzle{
             queen.x = j;
             queen.y = i;
             queen.current_square = dropped_square.id;
-            dropped_square.get_div().classList.add("queen-div-red");
-
-
-
 
           } else{
             //snap home

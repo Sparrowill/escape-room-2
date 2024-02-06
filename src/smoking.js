@@ -6,7 +6,7 @@ export function create_smoking(){
 
     var smoking_entrance = new Scene("smoking-entrance", "./images/backgrounds/smoking/entrance.png");
     smoking_entrance.add_nav_btn("to-interior","50","30",move,"smoking-interior");
-    smoking_entrance.add_interact_btn("cabinet","0","50","0","30","20",show_interact,"A cabinet. Open it?","Yes", function(){
+    smoking_entrance.add_interact_btn("cabinet","0","50","0","40","15",show_interact,"A cabinet. Open it?","Yes", function(){
        
         if(smoking_chess.is_solved()){
             show_text("There's nothing more in this cabinet");

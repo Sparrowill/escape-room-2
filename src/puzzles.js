@@ -92,7 +92,11 @@ export function create_puzzles(){
     puzzles.push(billiards_latin_lit);
 
     smoking_chess = new Board("smoking-chess","")
-    smoking_chess.set_explanation("There is a worn wooden chessboard in the cabinet, but instead of a full set of pieces there are only 8 queens. A note reads: <br><br> If you can place these 8 queens on the board, such that no piece threatens another, I will reveal a secret.<br><br>Drag and drop the queens onto the chess board. Once a solution is correct, the puzzle will complete automatically.");
+    smoking_chess.set_explanation("There is a worn wooden chessboard in the cabinet, but instead of a full set of pieces there are only 8 queens. A note reads: <br><br> In chess, the queen can move the full length of the board diagonally, vertically, and horizontally. If you can place these 8 queens on the board, such that no piece threatens another, I will reveal a secret.<br><br>Drag and drop the queens onto the chess board. Once a solution is correct, the puzzle will complete automatically.");
     smoking_chess.has_no_answer();
+    smoking_chess.set_success_text("Correct! If you consider rotations and mirrored solutions as separate answers, there are 92 answers to this puzzle. Without any of the above factors, there are only 12 answers. <br><br>From beneath the chessboard drops a key, which you pick up and place in your pocket",function (){
+        room.add_to_inventory("billiard-cabinet-key");
+    });
+    smoking_chess.set_hints(["No hints on this one. You can Google it if you're a cheat and want the answer, but you're not a cheat, right?"]);
     puzzles.push(smoking_chess);
 }
