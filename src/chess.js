@@ -157,7 +157,6 @@ export class Board extends Puzzle{
           document.onmousemove = null;
 
           // Check if queen was released over div
-          var puzzle =  document.getElementById("puzzle-view-bg");
           const queen_rect = elmnt.getBoundingClientRect();
           var dropped_square = null
           for (var i =0; i< squares.length; i++){
@@ -175,12 +174,20 @@ export class Board extends Puzzle{
               }
           }
           if(dropped_square != null){
+            
             if(!(dropped_square.is_full()))
             console.log("Dropped into square number " + dropped_square.id);
-            elmnt.style.position = "static"
-            elmnt.style.width = "50%"
-            dropped_square.get_div().appendChild(elmnt);
-            dropped_square.full= true;
+            var div_width = 4.3;
+            var div_height = 8;
+            var id = dropped_square.id -1;
+            var i = Math.floor((id)/8) ;
+            console.log(i);
+            var j = id-(i*8);
+            var x = 33 + (div_width*j) + "%";
+            var y = 19 + (div_height*i) + "%";
+            elmnt.style.left = x;
+            elmnt.style.top = y;
+
           }
 
           //If so, snap into it and mark it as full
