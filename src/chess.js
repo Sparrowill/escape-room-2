@@ -183,8 +183,8 @@ export class Board extends Puzzle{
             var i = Math.floor((id)/8) ;
             console.log(i);
             var j = id-(i*8);
-            var x = 33 + (div_width*j) + "%";
-            var y = 19 + (div_height*i) + "%";
+            var x = 33 + (div_width/4) + (div_width*j) + "%";
+            var y = 19 + (div_height/4) + (div_height*i) + "%";
             elmnt.style.left = x;
             elmnt.style.top = y;
 
