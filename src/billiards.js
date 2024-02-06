@@ -1,7 +1,7 @@
 import {Scene} from "./scene.js"
 import {move, show_interact,show_text} from "./interaction.js"
 import { billiards_ball, billiards_glass, billiards_latin,billiards_latin_lit } from "./puzzles.js";
-
+import { room } from "./renderer.js"
 export var billiards_interior, billiards_entrance, billiards_cabinet;
 
 export function create_billiards(){
@@ -60,7 +60,7 @@ export function create_billiards(){
         if(room.inventory_contains("smoking-puzzle-clue")){
             show_text("There's nothing more in this cabinet");
         }
-        else if(room.inventory_contains("billiards-cabinet-key")){
+        else if(room.inventory_contains("billiard-cabinet-key")){
             show_text("The cabinet opens, and inside you find a piece of paper. Take it with you, why not!");
             room.add_to_inventory("smoking-puzzle-clue");
         } else{
@@ -92,7 +92,7 @@ export function create_billiards(){
         if(room.inventory_contains("smoking-puzzle-clue")){
             show_text("There's nothing more in this cabinet");
         }
-        else if(room.inventory_contains("billiards-cabinet-key")){
+        else if(room.inventory_contains("billiard-cabinet-key")){
             show_text("The cabinet opens, and inside you find a piece of paper. Take it with you, why not!");
             room.add_to_inventory("smoking-puzzle-clue");
         } else{
