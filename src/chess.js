@@ -9,6 +9,7 @@ class Queen {
         this.y = y;
         this.img;
         this.current_square = null;
+        this.left;
     }
     get_x(){
         return this.x
@@ -69,7 +70,8 @@ export class Board extends Puzzle{
             var y = "90%";
             var queen = new Queen(i,x,y);
             queen.set_img(img);
-            queen.get_img().style.left=x;
+            queen.left = x;
+            queen.get_img().style.left = x;
             queen.get_img().style.top = y;
             this.dragElement(queen);
             puzzle.appendChild(queen.get_img());
@@ -93,6 +95,7 @@ export class Board extends Puzzle{
                 div.style.height = div_height + "%";
                 var x = 33 + (div_width*j) + "%";
                 var y = 19 + (div_height*i) + "%";
+                
                 div.style.left = x
                 div.style.top = y
                 var num = Math.floor(Math.random() * 4) + 1;
@@ -102,6 +105,8 @@ export class Board extends Puzzle{
                     div.style.backgroundImage =  "url('./images/puzzles/smoking/white" + num + ".png')"
                 }
                 var square = new Square(id,div,x,y)
+                square.x = j;
+                square.y = i;
                 this.squares.push(square);
                 puzzle.appendChild(div);
             }
@@ -126,15 +131,24 @@ export class Board extends Puzzle{
         for(var i in this.squares){
             var square = this.squares[i];
             square.get_div().classList.remove("queen-div-red");
+            square.full= false;
         }
         var filled_squares = [];
         for (var i in this.queens){
             var queen = this.queens[i];
+            console.log(queen.current_square)
+            //If queen is placed on the board
             if(queen.current_square != null){
-                filled_squares.push(queen.current_square);
-                //Get corresponding div
-                var square = this.squares[queen.current_square-1];
-                square.get_div().classList.add("queen-div-red");
+                //Check all squares for threat
+                for(var j in this.squares){
+                    var square = this.squares[j];
+                    //Check rook lines
+                    if((square.x == queen.x)||(square.y == queen.y)){
+                        square.get_div().classList.add("queen-div-red");
+                        square.full = true;
+                        filled_squares.push(square.id);
+                    }
+                }
             }
         }
     }
@@ -143,7 +157,6 @@ export class Board extends Puzzle{
     dragElement(queen) {
         var elmnt = queen.get_img();
         var squares = this.squares;
-        var update_board = this.update_board;
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         if (document.getElementById(elmnt.id + "header")) {
           // if present, the header is where you move the DIV from:
@@ -202,8 +215,7 @@ export class Board extends Puzzle{
                   }
               }
           }
-          if(dropped_square != null){
-            if(!(dropped_square.is_full()))
+          if((dropped_square != null) && (!(dropped_square.is_full()))){
             var div_width = 4.3;
             var div_height = 8;
             var id = dropped_square.id -1;
@@ -213,9 +225,14 @@ export class Board extends Puzzle{
             var y = 19 + (div_height/4) + (div_height*i) + "%";
             elmnt.style.left = x;
             elmnt.style.top = y;
+            queen.x = j;
+            queen.y = i;
             queen.current_square = dropped_square.id;
             dropped_square.get_div().classList.add("queen-div-red");
           } else{
+            //snap home
+            queen.get_img().style.top = "90%"
+            queen.get_img().style.left = queen.left;
             //Not dropped inside a square
             queen.current_square = null;
           }
