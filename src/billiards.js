@@ -57,17 +57,15 @@ export function create_billiards(){
         }
     });
     billiards_interior.add_interact_btn("cabinet","51","39","0","11","11",show_interact,"A cabinet. Open it?","Yes", function(){
-        /*
-        if(room.inventory_contains("a key of some sort"")){
+        if(room.inventory_contains("smoking-puzzle-clue")){
             show_text("There's nothing more in this cabinet");
         }
-        else if(smoking.puzzle.is_solved()){
-            show_text("The cabinet opens, and inside you find a THING");
-            room.add_to_inventory("a key of some sort");
-        } else{*/
+        else if(room.inventory_contains("billiards-cabinet-key")){
+            show_text("The cabinet opens, and inside you find a piece of paper. Take it with you, why not!");
+            room.add_to_inventory("smoking-puzzle-clue");
+        } else{
             show_text("It's locked");
-        /*}
-        */
+        }
     });
     billiards_interior.add_feedback_btn("pool1","17","58","164","30","27",show_text,"Nothing here. Coding a billiards table puzzle was too much effort for me");
     billiards_interior.add_feedback_btn("pool2","41","52","0","30","13",show_text,"Nothing here. Coding a billiards table puzzle was too much effort for me");
@@ -90,8 +88,7 @@ export function create_billiards(){
                 billiards_ball.activate_scales();
             }
     });
-    billiards_cabinet.add_interact_btn("cabinet","34","39","0","30","17",show_interact,"A cabinet. Open it?","Yes", function(){
-        
+    billiards_cabinet.add_interact_btn("cabinet","34","39","0","30","17",show_interact,"A cabinet. Open it?","Yes", function(){  
         if(room.inventory_contains("smoking-puzzle-clue")){
             show_text("There's nothing more in this cabinet");
         }
@@ -101,7 +98,6 @@ export function create_billiards(){
         } else{
             show_text("It's locked");
         }
-        
     });
     billiards_cabinet.add_feedback_btn("fireplace","50","13","0","20","12",show_text,"Just a fancy crest, nothing more.");
     billiards_cabinet.add_feedback_btn("vases","64","12","0","15","16",show_text,"Those are in glass cases. That means they're super duper valuabele! No touching");
