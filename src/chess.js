@@ -8,6 +8,7 @@ class Queen {
         this.x = x;
         this.y = y;
         this.img;
+        this.current_square = null;
     }
     get_x(){
         return this.x
@@ -29,7 +30,7 @@ class Square{
         this.div = div;
         this.x = x;
         this.y = y;
-        this.full
+        this.full = false;
     }
     get_div(){
         return this.div;
@@ -56,6 +57,7 @@ export class Board extends Puzzle{
         }
         this.queens = []
         this.create_queens(puzzle);
+        this.update_board();
     }
 
     create_queens(puzzle){
@@ -111,11 +113,37 @@ export class Board extends Puzzle{
             this.reset_queens();
         });
         puzzle.appendChild(reset_btn);
+        //Add event listener to update squares whenever a queen is pike dup or dropped
+        puzzle.addEventListener("mousedown", () => {
+            this.update_board();
+        });
+        puzzle.addEventListener("mouseup", () => {
+            this.update_board();
+        });
     }
+
+    update_board(){
+        for(var i in this.squares){
+            var square = this.squares[i];
+            square.get_div().classList.remove("queen-div-red");
+        }
+        var filled_squares = [];
+        for (var i in this.queens){
+            var queen = this.queens[i];
+            if(queen.current_square != null){
+                filled_squares.push(queen.current_square);
+                //Get corresponding div
+                var square = this.squares[queen.current_square-1];
+                square.get_div().classList.add("queen-div-red");
+            }
+        }
+    }
+
 
     dragElement(queen) {
         var elmnt = queen.get_img();
         var squares = this.squares;
+        var update_board = this.update_board;
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         if (document.getElementById(elmnt.id + "header")) {
           // if present, the header is where you move the DIV from:
@@ -126,6 +154,7 @@ export class Board extends Puzzle{
         }
       
         function dragMouseDown(e) {
+            queen.current_square = null;
             //Check if queen is already inside div
             e = e || window.event;
             e.preventDefault();
@@ -174,23 +203,22 @@ export class Board extends Puzzle{
               }
           }
           if(dropped_square != null){
-            
             if(!(dropped_square.is_full()))
-            console.log("Dropped into square number " + dropped_square.id);
             var div_width = 4.3;
             var div_height = 8;
             var id = dropped_square.id -1;
             var i = Math.floor((id)/8) ;
-            console.log(i);
             var j = id-(i*8);
             var x = 33 + (div_width/4) + (div_width*j) + "%";
             var y = 19 + (div_height/4) + (div_height*i) + "%";
             elmnt.style.left = x;
             elmnt.style.top = y;
-
+            queen.current_square = dropped_square.id;
+            dropped_square.get_div().classList.add("queen-div-red");
+          } else{
+            //Not dropped inside a square
+            queen.current_square = null;
           }
-
-          //If so, snap into it and mark it as full
         }
     }
 }

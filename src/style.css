@@ -405,3 +405,8 @@ body{
     position: absolute;
     z-index:4; 
 }
+
+.queen-div-red{
+    background-color: rgba(238, 93, 8, 0.5);
+    background-blend-mode: multiply;
+}
