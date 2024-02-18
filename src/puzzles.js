@@ -103,6 +103,7 @@ export function create_puzzles(){
 
     smoking_exit = new Exit("smoking-exit","./images/puzzles/smoking/exit.png")
     smoking_exit.set_explanation("So, this is it, the final puzzle. <br><br>This door is locked, and there are 4 handles that can open it. These must be turned in a precise order, otherwise the door will not open. Some handles may need to be turned more than once. Good Luck!");
+    smoking_exit.set_hints(["You could sit here all day twiddling doorknobs, but there is a clue that goes with this puzzle. Have you found the book yet?", "The book gives you a set of instructions on how to manipulate the handles.", "The book tells you how many times to turn each handle, and where to move after turning the handle", "All you're missing is which handle to start at. Only one will work with the arrows", "Starting at the top left handle, turn the handle twice (2 in the book), then move right (right arrow in the book). Keep doing this for every instruction in the book.","To solve this puzzle, turn each handle in turn, following this sequence. Top Left, Top Left, Top Right, Top Right, Bottom Right, Bottom Left, Bottom Right, Bottom Right, Bottom Right, Bottom Left, Top Left, Top Left"])
     smoking_exit.set_success_text("Correct! Time to leave the room!",function (){
        console.log("TODO Add Nav buttons");
     });
