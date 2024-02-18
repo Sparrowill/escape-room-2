@@ -6,10 +6,11 @@ import { armoury_entrance } from "./armoury.js";
 import { Scales } from "./ball.js";
 import {billiards_interior, billiards_cabinet} from "./billiards.js";
 import {Board} from "./chess.js"
+import {Exit} from "./exit.js"
 
 
 var puzzles = [];
-export var stables_plumbing, armoury_guns, armoury_music, billiards_ball, billiards_glass, billiards_latin, billiards_latin_lit, smoking_chess;
+export var stables_plumbing, armoury_guns, armoury_music, billiards_ball, billiards_glass, billiards_latin, billiards_latin_lit, smoking_chess,smoking_exit;
 
 export function create_puzzles(){
     stables_plumbing = new Puzzle("stables_plumbing","./images/puzzles/stables/blank_maze.png")
@@ -99,4 +100,9 @@ export function create_puzzles(){
     });
     smoking_chess.set_hints(["No hints on this one. You can Google it if you're a cheat and want the answer, but you're not a cheat, right?"]);
     puzzles.push(smoking_chess);
+
+    smoking_exit = new Exit("smoking-exit","./images/puzzles/smoking/exit.png")
+    smoking_exit.set_explanation("So, this is it, the final puzzle. <br><br>This door is locked, and there are 4 handles that can open it. These must be turned in a precise order, otherwise the door will not open. Some handles may need to be turned more than once. Good Luck!");
+    smoking_exit.has_no_answer();
+    puzzles.push(smoking_exit);
 }
