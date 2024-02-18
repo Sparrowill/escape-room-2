@@ -50,7 +50,7 @@ body{
     top:0%;
     height:100%;
     width:100%;
-    /* z-index:9; */
+    z-index:9;
 }
 .grid-view{
     opacity:50%;
