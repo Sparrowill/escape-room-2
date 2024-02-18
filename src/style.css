@@ -39,6 +39,7 @@ body{
     background-color: white;
     top:0%;
     height:100%;
+    display:none;
 }
 .room-view{
     width:100%;
@@ -50,7 +51,7 @@ body{
     top:0%;
     height:100%;
     width:100%;
-    z-index:9;
+    /* z-index:9; */
 }
 .grid-view{
     opacity:50%;
@@ -450,4 +451,47 @@ body{
 
 @keyframes knob-rotate {
     50% {transform: rotate(180deg);}
-  }
+}
+
+.splash-background{
+    position:absolute;
+    height:100%;
+    width: 100%;
+    background-image: url("./images/backgrounds/splash/splash.png");
+    background-size: contain;
+    z-index: 8;
+}
+
+.splash-foreground{
+    margin:10%;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1%;
+    padding-bottom: 5%;
+    width:80%;
+    opacity: 80%;
+    background-color: antiquewhite;
+    z-index:9;
+    border-radius: 30px;
+}
+.start-btn{
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position:absolute;
+    left:50%;
+    transform: translate(-50%,0);
+}
+
+.intro-vid{
+    display: none;
+    height: 100%;
+    width:100%;
+    z-index: 9;
+}

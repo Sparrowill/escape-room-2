@@ -14,6 +14,7 @@ window.cancel = false;
 window.timeout;
 
 export function create_rooms(){
+    document.getElementById("room-view-bg").style.display = "block"
     create_stables();
     create_armoury();
     create_billiards()

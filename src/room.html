@@ -7,7 +7,10 @@
     <title>Escape Room 2</title>
   </head>
   <body>
-    <div class="inventory-bg">
+    <div id = "intro-vid" class= "intro-vid">
+    <video id = "video" src="./video/intro.mp4" class = "intro-vid" ></video>
+  </div>
+     <div class="inventory-bg">
       <div id="title">
         <div class="inventory-column">
           <img class="inventory-title" src="./images/inventory/inventory.png">
@@ -17,12 +20,12 @@
 
       </div>
     </div>
-    <div class="grid-view-bg" id="grid-bg">
+  <!-- <div class="grid-view-bg" id="grid-bg">
       <img class="grid-view" id="grid" src="./images/grid.png">
-    </div>
+    </div> -->
     <div class="room-view-bg" id="room-view-bg">
       <img class="room-view" id="room-view">
-    </div>
+    </div> 
     <div class="puzzle-view-bg" id="puzzle-view-bg">
       <img class="puzzle-view" id="puzzle-view">
     </div>
@@ -36,5 +39,4 @@
     </div>
 
     <script type="module" src="./renderer.js"></script>
-  </body>
 </html>
