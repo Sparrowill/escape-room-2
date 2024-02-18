@@ -490,8 +490,9 @@ body{
 }
 
 .intro-vid{
-    display: none;
+    position: absolute;
+    display: block;
     height: 100%;
     width:100%;
-    z-index: 9;
+    z-index: 7;
 }

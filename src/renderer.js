@@ -29,6 +29,7 @@ function start_room(){
     document.getElementById("video").play();
     setTimeout(function(){
     document.getElementById("intro-vid").style.display = "none";
+    
     // Start the room
     create_inventory();
     create_rooms();
