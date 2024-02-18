@@ -204,6 +204,84 @@ export class Scales extends Puzzle{
         puzzle.appendChild(weigh_btn);
         this.num_weighs = 2;
     }
-    
+    dragElement(ball) {
+        var elmnt = ball.get_img();
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id + "header")) {
+          // if present, the header is where you move the DIV from:
+          document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+        } else {
+          // otherwise, move the DIV from anywhere inside the DIV:
+          elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            //Check if ball is already inside div
+            if(!ball.placed){
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+        }
+
+        function elementDrag(e) {
+          e = e || window.event;
+          e.preventDefault();
+          // calculate the new cursor position:
+          pos1 = pos3 - e.clientX;
+          pos2 = pos4 - e.clientY;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          // set the element's new position:
+          elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+          elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+          // stop moving when mouse button is released:
+          document.onmouseup = null;
+          document.onmousemove = null;
+          // Check if item was released on scales
+          var left = document.getElementById("left-scale");
+          var right = document.getElementById("right-scale");
+            if(left.title == "True"){
+                add_to_div(left);
+                left.appendChild(ball.ball_img);
+                ball.placed = true;
+            } else if(right.title == "True"){
+                add_to_div(right);
+                right.appendChild(ball.ball_img);
+                ball.placed = true;
+            } else {
+                //Snap back to home
+                ball.ball_img.style.left=ball.get_left();
+                ball.ball_img.style.top = "70%";
+            }
+        }
+        function add_to_div(elmnt){
+            // Get number of balls inside div already
+            var num_balls = elmnt.children.length;
+            //Do stacking
+            if(num_balls>=7){
+                ball.ball_img.style.left=((num_balls % 7) * 25) + 25 + "%";
+                ball.ball_img.style.top= "40%";   
+            } else if (num_balls>=4) {
+                ball.ball_img.style.left=((num_balls % 4) * 25) + 12.5 +"%";
+                ball.ball_img.style.top= "60%";   
+            } else{
+                ball.ball_img.style.left=((num_balls % 4) * 25) + "%";
+                ball.ball_img.style.top= "80%";   
+
+            }
+            //position accordingly
+            ball.ball_img.style.width="25%";
+        }
+
+    }
     
 }

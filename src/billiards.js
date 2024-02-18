@@ -93,7 +93,7 @@ export function create_billiards(){
             show_text("There's nothing more in this cabinet");
         }
         else if(room.inventory_contains("billiard-cabinet-key")){
-            show_text("The cabinet opens, and inside you find a piece of paper. Take it with you, why not!");
+            show_text("The cabinet opens, and inside you find a book. Take it with you, why not!");
             room.add_to_inventory("smoking-puzzle-clue");
         } else{
             show_text("It's locked");
