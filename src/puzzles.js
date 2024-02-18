@@ -103,6 +103,9 @@ export function create_puzzles(){
 
     smoking_exit = new Exit("smoking-exit","./images/puzzles/smoking/exit.png")
     smoking_exit.set_explanation("So, this is it, the final puzzle. <br><br>This door is locked, and there are 4 handles that can open it. These must be turned in a precise order, otherwise the door will not open. Some handles may need to be turned more than once. Good Luck!");
+    smoking_exit.set_success_text("Correct! Time to leave the room!",function (){
+       console.log("TODO Add Nav buttons");
+    });
     smoking_exit.has_no_answer();
     puzzles.push(smoking_exit);
 }
