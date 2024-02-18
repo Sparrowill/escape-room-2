@@ -45,5 +45,5 @@ export function create_smoking(){
 
     window.scenes.push(smoking_interior);
 
-smoking_entrance.activate();
+//smoking_entrance.activate();
 }
