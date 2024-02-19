@@ -47,6 +47,7 @@ export function create_smoking(){
     window.scenes.push(smoking_interior);
 
     smoking_end = new Scene("smoking-end","./images/backgrounds/splash/splash.png");
+    smoking_end.text_on_activate("Congratulations! You escaped! TODO Add proper finish text and a quit button. Might need to be something other than text_on_activate. Html maybe...?");
     window.scenes.push(smoking_end);
     smoking_entrance.activate();
 }

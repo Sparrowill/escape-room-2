@@ -8,12 +8,19 @@ export class Scene {
         this.interact_btns = [];
         this.long_text_on = false;
         this.current_text = "";
+        this.on_activate = null;
     }
     activate() {
         this.active = true;
+        if (this.on_activate != null){
+            this.show_long_text(this.on_activate);
+        }
         //Set background
         document.getElementById("room-view").src=this.background
         this.create_btns()
+    }
+    text_on_activate(text){
+        this.on_activate = text;
     }
 
     deactivate() {
