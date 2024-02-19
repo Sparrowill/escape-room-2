@@ -111,8 +111,13 @@ export function create_puzzles(){
         if(smoking_entrance.is_active()){
             smoking_entrance.activate();
         }
-        document.getElementById("to-end").style.zIndex = "2";
-
+        //wait until puzzle is closed to add nav buttn at right zindex
+        var interval = setInterval(function(){
+            if(!smoking_exit.is_active()){
+                document.getElementById("to-end").style.zIndex = "1";
+                clearInterval(interval);
+            }
+        },100);
 
     });
     smoking_exit.has_no_answer();

@@ -73,11 +73,11 @@ bg.id = "splash-bg";
 var fg = document.createElement("div");
 fg.classList.add("splash-foreground");
 fg.appendChild(create_text_element("h1","You Escaped!", true));
-fg.appendChild(create_text_element("p","Congratulations. Tell me!",true));
+fg.appendChild(create_text_element("p","Congratulations. Well done for escaping the mansion. <br>If you've played this game, chances are you know me personally, or at least have a way of contacting me. I'd love to know how you found the experience. <br>Was it too hard, too easy? Just right? If you did time yourself, I'd love to know how long it took, and if you used any hints.<br>Thank you very much for playing my game. If you'd like to see a version 3, just let me know.",true));
 var btn = document.createElement("btn");
 btn.classList.add("start-btn");
-btn.onclick= window.closed
-btn.innerText = "Start";
+btn.onclick=  window.versions.quit;
+btn.innerText = "Exit";
 fg.appendChild(btn)
 bg.appendChild(fg);
 page.appendChild(bg);

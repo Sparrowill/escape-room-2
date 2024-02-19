@@ -10,19 +10,19 @@ export class Scene {
         this.interact_btns = [];
         this.long_text_on = false;
         this.current_text = "";
-        this.on_activate = null;
+        this.final_scene = false;
     }
-    activate(fade=false) {
+    activate() {
         this.active = true;
-        if (this.on_activate != null){
+        if (this.final_scene){
             create_end_screen();
         }
         document.getElementById("room-view").src=this.background
         //Set background
         this.create_btns()
     }
-    text_on_activate(text){
-        this.on_activate = text;
+    is_final_scene(){
+        this.final_scene = true;
     }
 
     deactivate() {

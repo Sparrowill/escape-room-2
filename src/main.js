@@ -1,6 +1,6 @@
 // main.js
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 
@@ -21,6 +21,7 @@ if (require('electron-squirrel-startup')) {
         preload: path.join(__dirname, 'preload.js')
       },
     });
+    ipcMain.handle('quit', (event) => app.quit())
     mainWindow.setIcon(path.join(__dirname, '/icons/icon.png'))
     mainWindow.maximize()
     mainWindow.removeMenu()
