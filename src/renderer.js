@@ -21,21 +21,17 @@ document.getElementById("agree").addEventListener("click", function (){
 
 function start_room(){
     document.getElementById("splash-bg").remove();
+    // Run the intro video,
+    document.getElementById("intro-vid").style.display = "block";
+    document.getElementById("video").play();
+    setTimeout(function(){
+    document.getElementById("intro-vid").style.display = "none";
+    
+    // Start the room
     create_inventory();
     create_rooms();
     create_puzzles();
-    document.getElementById("intro-vid").style.display = "none";
-    //     // Run the intro video,
-    // document.getElementById("intro-vid").style.display = "block";
-    // document.getElementById("video").play();
-    // setTimeout(function(){
-    // document.getElementById("intro-vid").style.display = "none";
-    
-    // // Start the room
-    // create_inventory();
-    // create_rooms();
-    // create_puzzles();
-    // },49000)
+    },49000)
 }
 
 function create_text_element(type, content, center){
@@ -56,7 +52,7 @@ bg.id = "splash-bg";
 var fg = document.createElement("div");
 fg.classList.add("splash-foreground");
 fg.appendChild(create_text_element("h1","Escape the Mansion", true));
-fg.appendChild(create_text_element("p","Welcome to Escape the Mansion. This virtual escape room is a standalone 'one-shot' experience and does not relate at all to my previous 'Escape the Prison' room. However, the puzzles are designed to be more challenging in this room, so why not try the other one first?",true));
+fg.appendChild(create_text_element("p","Welcome to Escape the Mansion. This virtual escape room is a standalone 'one-shot' experience and does not relate at all to my previous 'Escape the Prison' room. However, the puzzles are designed to be more challenging in this room, so why not try the other one first?<br><br>As with my previous escape room this has been constructed, from scratch by me, over a period of around a month. No frameworks, no libraries, just pure html, css, and javascript.",true));
 fg.appendChild(create_text_element("h2","Rules and Instructions",true));
 fg.appendChild(create_text_element("p","<ul><li>The object of the game is to reach the exit as quickly as possible You reach the exit by solving puzzles and advancing through to new rooms.</li><br><li>Throughout the game you will (hopefully) collect clues and keys by looking around -clicking on stuff- and solving puzzles. Each clue/key is only used <b>once</b>.</li><br><li>You 'move' through the rooms by clicking on <b>yellow circles</b> (they're the same as in Escape the Prison). You can't miss them!</li><br><li>Some of the puzzles can be quite devious. You may want a pen and paper to keep track of things. If you get stuck at any point, each puzzle has hints available.</li><br><li>Some of the puzzles rely on audio. <b>Make sure your device is able to play audio before you start the room</b>.</li><br><li> As with my other room, there is no time limit. Just try to escape. I set my 'target' time while developing the game at one hour, to give you an idea.</li></ul>",false))
 fg.appendChild(create_text_element("h3","Now you've read the instructions, you're ready to start. Click the button below. Good Luck", true))

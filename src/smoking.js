@@ -43,7 +43,6 @@ export function create_smoking(){
     smoking_interior.add_nav_btn("to-entrance","45","50",move,"smoking-entrance");
     
     smoking_interior.add_interact_btn("cabinet","58","38","0","10","5",show_interact,"A cabinet. Open it?","Yes", function(){
-       
         if(smoking_chess.is_solved()){
             show_text("There's nothing more in this cabinet");
         }
@@ -51,11 +50,18 @@ export function create_smoking(){
            smoking_chess.activate_board();
         }
     });
+    smoking_interior.add_feedback_btn("large-painting","66","10","0","30","34",show_text,"A large painting. Disappointingly nothing behind it.");
+    smoking_interior.add_feedback_btn("seating","48","50","0","40","52",show_text,"This being a smoking room, it seems apt to have deep burgundy furniture to recline on with a cigar and a port after a large lunch. Unfortunately you have neither of these things, so keep off");
+    smoking_interior.add_feedback_btn("small-paintings","43","10","0","23","23",show_text,"Some smaller portraits of occupants of the house.");
+    smoking_interior.add_feedback_btn("credenza","0","40","0","60","25",show_text,"'The largest locked cabinet in the room, surely he's hidden something in there!' I hear you cry. Alas, no.");
+    smoking_interior.add_feedback_btn("credenza2","0","10","0","30","15",show_text,"'The largest locked cabinet in the room, surely he's hidden something in there!' I hear you cry. Alas, no.");
 
+    smoking_interior.add_feedback_btn("more-paintings","15","10","0","30","18",show_text,"It is a very arty room this isn't it.. I'm not sure I like it.");
+    smoking_interior.add_feedback_btn("even-more-paintings","33","10","0","12","10",show_text,"I have simply run out of quips about paintings. There are far too many in this room.");
     window.scenes.push(smoking_interior);
 
     smoking_end = new Scene("smoking-end","./images/backgrounds/splash/splash.png");
     smoking_end.is_final_scene();
     window.scenes.push(smoking_end);
-    smoking_entrance.activate();
+    smoking_interior.activate();
 }
