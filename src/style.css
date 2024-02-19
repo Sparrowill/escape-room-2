@@ -138,8 +138,8 @@ body{
     rotate: 0deg;
     top: 50%;
     left: 50%;
-    border: 2px solid black ;
-    /* border: 2px solid transparent; */
+    /* border: 2px solid black ; */
+    border: 2px solid transparent;
     
 }
 .long-text-bg{

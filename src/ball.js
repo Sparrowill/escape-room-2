@@ -54,6 +54,9 @@ export class Scales extends Puzzle{
     one_guess(){
         super.one_guess();
     }
+    set_solved(solved){
+        super.set_solved(solved);
+    }
     calculate_weight(){
         if(this.num_weighs == 0){
             show_text("You have 0 weighs remaining. Restart the puzzle.");

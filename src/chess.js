@@ -1,5 +1,6 @@
 // Class for the 8 queens puzzle
 
+import { play_audio } from "./interaction.js";
 import { Puzzle } from "./puzzle.js";
 
 class Queen {
@@ -197,6 +198,7 @@ export class Board extends Puzzle{
         }
       
         function dragMouseDown(e) {
+
             queen.current_square = null;
             //Check if queen is already inside div
             e = e || window.event;
@@ -204,6 +206,7 @@ export class Board extends Puzzle{
             // get the mouse cursor position at startup:
             pos3 = e.clientX;
             pos4 = e.clientY;
+            play_audio("./audio/chessup.mp3");
             document.onmouseup = closeDragElement;
             // call a function whenever the cursor moves:
             document.onmousemove = elementDrag;
@@ -227,7 +230,7 @@ export class Board extends Puzzle{
           // stop moving when mouse button is released:
           document.onmouseup = null;
           document.onmousemove = null;
-
+          play_audio("./audio/chessdown.mp3");
           // Check if queen was released over div
           const queen_rect = elmnt.getBoundingClientRect();
           var dropped_square = null

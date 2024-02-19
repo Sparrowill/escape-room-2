@@ -82,6 +82,7 @@ export function create_billiards(){
     billiards_cabinet.add_interact_btn("ball-puzzle","65","34","0","33","10",show_interact,"Look closer?","Look",function (){
             if(billiards_ball.is_solved()){
                 show_interact("Would you like to have another go?","Yes",function(){
+                    billiards_ball.set_solved(false);
                     billiards_ball.activate_scales();
                 });
             } else{
@@ -100,7 +101,7 @@ export function create_billiards(){
         }
     });
     billiards_cabinet.add_feedback_btn("fireplace","50","13","0","20","12",show_text,"Just a fancy crest, nothing more.");
-    billiards_cabinet.add_feedback_btn("vases","64","12","0","15","16",show_text,"Those are in glass cases. That means they're super duper valuabele! No touching");
+    billiards_cabinet.add_feedback_btn("vases","64","12","0","15","16",show_text,"Those are in glass cases. That means they're super duper valuable! No touching");
     billiards_cabinet.add_feedback_btn("pool","50","98","55","37","50",show_text,"Nothing here. Coding a billiards table puzzle was too much effort for me");
     billiards_cabinet.add_feedback_btn("pool2","66","74","14","32","40",show_text,"Nothing here. Coding a billiards table puzzle was too much effort for me");
     billiards_cabinet.add_feedback_btn("light","78","38","0","12","22",show_text,"Hiding things in lights is more of a prison escape thing...");

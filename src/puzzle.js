@@ -296,7 +296,10 @@ export class Puzzle {
     is_solved(){
         return this.solved;
     }
-
+    set_solved(solved){
+        this.solved = solved;
+    }
+    
     one_guess(){
         this.single_guess = true;
     }
