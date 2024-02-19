@@ -65,6 +65,24 @@ bg.appendChild(fg);
 page.appendChild(bg);
 }
 
+export function create_end_screen(){
+var page = document.body;
+var bg = document.createElement("div");
+bg.classList.add("splash-background");
+bg.id = "splash-bg";
+var fg = document.createElement("div");
+fg.classList.add("splash-foreground");
+fg.appendChild(create_text_element("h1","You Escaped!", true));
+fg.appendChild(create_text_element("p","Congratulations. Tell me!",true));
+var btn = document.createElement("btn");
+btn.classList.add("start-btn");
+btn.onclick= window.closed
+btn.innerText = "Start";
+fg.appendChild(btn)
+bg.appendChild(fg);
+page.appendChild(bg);
+}
+
 // Create the room (player inventory)
 export var room = new Player();
 create_splash_screen();

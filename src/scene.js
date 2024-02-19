@@ -1,3 +1,5 @@
+import { create_end_screen } from "./renderer.js";
+
 export class Scene {
     constructor(name, background){
         this.name = name;
@@ -10,13 +12,13 @@ export class Scene {
         this.current_text = "";
         this.on_activate = null;
     }
-    activate() {
+    activate(fade=false) {
         this.active = true;
         if (this.on_activate != null){
-            this.show_long_text(this.on_activate);
+            create_end_screen();
         }
-        //Set background
         document.getElementById("room-view").src=this.background
+        //Set background
         this.create_btns()
     }
     text_on_activate(text){
