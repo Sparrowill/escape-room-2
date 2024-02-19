@@ -63,5 +63,4 @@ export function create_smoking(){
     smoking_end = new Scene("smoking-end","./images/backgrounds/splash/splash.png");
     smoking_end.is_final_scene();
     window.scenes.push(smoking_end);
-    smoking_interior.activate();
 }
