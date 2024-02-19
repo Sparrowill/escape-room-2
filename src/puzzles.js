@@ -1,6 +1,6 @@
 import { Puzzle } from "./puzzle.js";
 import {stables_interior} from "./stables.js";
-import {move, show_interact, show_text} from "./interaction.js";
+import {move, play_audio, show_interact, show_text} from "./interaction.js";
 import {room} from "./renderer.js"
 import { armoury_entrance } from "./armoury.js";
 import { Scales } from "./ball.js";
@@ -62,6 +62,7 @@ export function create_puzzles(){
     billiards_glass.set_explanation("No explanation for this one. If you've found all the pieces it should be easy!");
     billiards_glass.add_interact_btn("glass-break","63.5","32","0","4.5","3.5",show_interact,"Interact?","Yes",function (){
         if(room.inventory_contains("billiard-ball")){
+            play_audio("./audio/glassbreak.mp3")
             billiards_glass.show_long_text("You throw the billiard ball at the glass, cracking the pane. <br> Sunlight refracts through the cracked glass, illuminating the wall opposite.");
             billiards_glass.solved = true;
         } else {

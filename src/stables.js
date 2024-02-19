@@ -1,5 +1,5 @@
 import {Scene} from "./scene.js"
-import {move, show_text, show_interact, fire_alarm} from "./interaction.js"
+import {move, show_text, show_interact, play_audio} from "./interaction.js"
 import {stables_plumbing} from "./puzzles.js";
 import { room } from "./renderer.js";
 
@@ -39,8 +39,16 @@ export function create_stables(){
     stables_interior.add_feedback_btn("hassan","54","17","0","3","3",show_text,"It's a name plaque for a horse. I can't read it from over here.");
     stables_interior.add_feedback_btn("blurry-plaque","47","17","0","3","2",show_text,"It's a name plaque for a horse. I can't read it from over here.");
     stables_interior.add_feedback_btn("lance","44","10","0","4","25",show_text,"That's a lance. Seeing as I don't have a squire, or a huge interest in jousting. I'm going to leave it here.");
-    stables_interior.add_interact_btn("fire-alarm", "27", "10","0","3","2",show_interact,"It has a button. Press it?","Press",fire_alarm);
-    stables_interior.add_interact_btn("fire-alarm", "30", "18","0","8","3",show_interact,"It has a button. Press it?","Press",fire_alarm);
+    stables_interior.add_interact_btn("fire-alarm", "27", "10","0","3","2",show_interact,"It has a button. Press it?","Press",function(){
+        play_audio("./audio/firealarm.mp3")
+        show_text("That's the fire alarm. Don't touch that...")
+
+    });
+    stables_interior.add_interact_btn("fire-alarm", "30", "18","0","8","3",show_interact,"It has a button. Press it?","Press",function(){
+        play_audio("./audio/firealarm.mp3")
+        show_text("That's the fire alarm. Don't touch that...")
+
+    });
     stables_interior.add_interact_btn("bench-paper", "80", "45","0","8","7",show_interact,"There's a lot of stuff pushed down the side of this bench. Do you want to look through it?","Yes",function (){
         if(!room.inventory_contains("stables-bench-clue")){
             room.add_to_inventory("stables-bench-clue");

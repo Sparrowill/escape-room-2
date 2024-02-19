@@ -1,4 +1,4 @@
-import { show_text } from "./interaction.js";
+import { play_audio, show_text } from "./interaction.js";
 import { Puzzle } from "./puzzle.js";
 
 // Code to run a puzzle that solves the 9 ball problem.
@@ -77,6 +77,7 @@ export class Scales extends Puzzle{
         var scale = document.getElementById("scales-sprite-div");
         var left = document.getElementById("left-scale");
         var right = document.getElementById("right-scale");
+        play_audio("./audio/scalescreak.mp3");
         if(this.left_weight > this.right_weight)  {
             scale.style.animation = "left-scales 5s 1";
             left.style.animation = "down-left-balls 5s 1";

@@ -1,3 +1,4 @@
+import { play_audio } from "./interaction.js";
 import { Puzzle } from "./puzzle.js";
 
 export class Exit extends Puzzle{
@@ -13,6 +14,7 @@ export class Exit extends Puzzle{
         }
     }
     add_to_order(id){
+        play_audio("./audio/doorknob.mp3");
         this.order += String(id);
         this.check_solve();
     }

@@ -21,17 +21,21 @@ document.getElementById("agree").addEventListener("click", function (){
 
 function start_room(){
     document.getElementById("splash-bg").remove();
-        // Run the intro video,
-    document.getElementById("intro-vid").style.display = "block";
-    document.getElementById("video").play();
-    setTimeout(function(){
-    document.getElementById("intro-vid").style.display = "none";
-    
-    // Start the room
     create_inventory();
     create_rooms();
     create_puzzles();
-    },49000)
+    document.getElementById("intro-vid").style.display = "none";
+    //     // Run the intro video,
+    // document.getElementById("intro-vid").style.display = "block";
+    // document.getElementById("video").play();
+    // setTimeout(function(){
+    // document.getElementById("intro-vid").style.display = "none";
+    
+    // // Start the room
+    // create_inventory();
+    // create_rooms();
+    // create_puzzles();
+    // },49000)
 }
 
 function create_text_element(type, content, center){
