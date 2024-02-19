@@ -71,4 +71,5 @@ export function create_stables(){
 
     // Load first scene. Starts the room.
        stables_entrance.activate();
+       stables_entrance.show_long_text("After travelling all this way, you'd think they'd at least have had someone around to let you in! <br><br> All that was open were these stables, but as you walked in the door slammed shut behind you, trapping you inside. It's probably a safety measure to stop the horses escaping, but it's mightily annoying now.<br><br> You will have to hope that there is a spare key inside here somewhere, so you can get back out! Maybe then you can find an open door to the main house...<br><br>Look around by clicking on things with your mouse. If nothing happens, chances are there's nothing there. Use the yellow dots to move around. Clicking on one will move you to its position. Quite often this will mean your perspective changes, allowing you to see what's currently behind you.<br><br>If you are timing yourself, now is a good time to start your timer. Good Luck!");
 }
