@@ -2,9 +2,10 @@ import {Scene} from "./scene.js"
 import {move, show_interact, show_text} from "./interaction.js"
 import { smoking_chess, smoking_exit } from "./puzzles.js";
 
+export var smoking_entrance, smoking_end
 export function create_smoking(){
 
-    var smoking_entrance = new Scene("smoking-entrance", "./images/backgrounds/smoking/entrance.png");
+    smoking_entrance = new Scene("smoking-entrance", "./images/backgrounds/smoking/entrance.png");
     smoking_entrance.add_nav_btn("to-interior","50","30",move,"smoking-interior");
     smoking_entrance.add_interact_btn("cabinet","0","50","0","40","15",show_interact,"A cabinet. Open it?","Yes", function(){
        
@@ -45,5 +46,7 @@ export function create_smoking(){
 
     window.scenes.push(smoking_interior);
 
-//smoking_entrance.activate();
+    smoking_end = new Scene("smoking-end","./images/backgrounds/splash/splash.png");
+    window.scenes.push(smoking_end);
+    smoking_entrance.activate();
 }
