@@ -1,7 +1,7 @@
 {
   "name": "escape-room-2",
-  "product-name": "escape-room-2",
-  "version": "1.0.0",
+  "product-name": "Escape The Mansion",
+  "version": "1.0.1",
   "description": "A Second Escape Room built in Electron",
   "main": "src/main.js",
   "scripts": {

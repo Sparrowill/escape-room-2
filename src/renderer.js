@@ -40,6 +40,7 @@ function create_text_element(type, content, center){
     if(center){
         el.style.textAlign = "center";
     }
+    el.classList.add("splash-text");
     return el;
 }
 
